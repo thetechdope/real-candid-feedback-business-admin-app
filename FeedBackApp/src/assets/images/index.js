@@ -1,4 +1,4 @@
 export const ImagePath = {
-  // ============ Bottom Tab ================ //
   LOGO: require('./logo/logo.png'),
+  LOGINLOGO: require('./logo2/logo2.png'),
 };
