@@ -1,12 +1,12 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
-import styles from './style';
+import styles from './styles';
 import {ImagePath} from '../../assets/images';
 
 const Splash = () => {
   return (
     <View>
-      <Image source={ImagePath.LOGO} style={{height: 500, width: '100%'}} />
+      <Image source={ImagePath.LOGO} />
     </View>
   );
 };
