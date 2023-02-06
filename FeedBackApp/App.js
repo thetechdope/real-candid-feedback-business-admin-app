@@ -2,6 +2,8 @@ import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Splash} from './src/screens';
 
+import Routes from './src/navigation/routes';
+
 const App = () => {
   return (
     <SafeAreaView style={{backgroundColor: '#7E50EE'}}>
@@ -24,7 +26,7 @@ const App = () => {
             borderTopEndRadius: 50,
             width: '100%',
           }}>
-          <Splash />
+          <Routes />
         </View>
       </View>
     </SafeAreaView>
