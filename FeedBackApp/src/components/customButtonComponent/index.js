@@ -11,7 +11,7 @@ import {COLOR} from '../../utils/color/color';
 
 const CustomButtonComponent = props => {
   return (
-    <TouchableOpacity style={styles.touchableView}>
+    <TouchableOpacity style={styles.touchableView} onPress={props.onPress}>
       <LinearGradient
         colors={[COLOR.LINEARGRADIENT1, COLOR.LINEARGRADIENT2]}
         style={styles.linearGradient}>

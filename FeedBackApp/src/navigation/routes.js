@@ -21,6 +21,11 @@ function MyStack(props) {
         component={screens.Login}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name={Route.Forgot}
+        component={screens.ForgotPassword}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }

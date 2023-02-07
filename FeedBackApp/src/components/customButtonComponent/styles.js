@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
+import {ROBOTO_REGULAR} from '../../assets/fonts';
 
 export default StyleSheet.create({
   linearGradient: {
@@ -18,7 +19,7 @@ export default StyleSheet.create({
   buttonText: {
     color: COLOR.TEXTWHITE,
     // fontWeight: 30,
-    fontFamily: 'ROBOTO-REGULAR',
+    fontFamily: ROBOTO_REGULAR,
     lineHeight: 24,
     fontSize: 16,
   },

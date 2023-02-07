@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,6 +53,22 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+	  <string>AntDesign.ttf</string>
+  <string>Entypo.ttf</string>
+  <string>EvilIcons.ttf</string>
+  <string>Feather.ttf</string>
+  <string>FontAwesome.ttf</string>
+  <string>FontAwesome5_Brands.ttf</string>
+  <string>FontAwesome5_Regular.ttf</string>
+  <string>FontAwesome5_Solid.ttf</string>
+  <string>Foundation.ttf</string>
+  <string>Ionicons.ttf</string>
+  <string>MaterialIcons.ttf</string>
+  <string>MaterialCommunityIcons.ttf</string>
+  <string>SimpleLineIcons.ttf</string>
+  <string>Octicons.ttf</string>
+  <string>Zocial.ttf</string>
+  <string>Fontisto.ttf</string>
 		<string>Poppins-Black.ttf</string>
 		<string>Poppins-BlackItalic.ttf</string>
 		<string>Poppins-Bold.ttf</string>
@@ -83,36 +99,6 @@
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Thin.ttf</string>
 		<string>Roboto-ThinItalic.ttf</string>
-		<string>POPPINS-BLACK.ttf</string>
-		<string>POPPINS-BLACKITALIC.ttf</string>
-		<string>POPPINS-BOLD.ttf</string>
-		<string>POPPINS-BOLDITALIC.ttf</string>
-		<string>POPPINS-EXTRABOLD.ttf</string>
-		<string>POPPINS-EXTRABOLDITALIC.ttf</string>
-		<string>POPPINS-EXTRALIGHT.ttf</string>
-		<string>POPPINS-EXTRALIGHTITALIC.ttf</string>
-		<string>POPPINS-ITALIC.ttf</string>
-		<string>POPPINS-LIGHT.ttf</string>
-		<string>POPPINS-LIGHTITLIC.ttf</string>
-		<string>POPPINS-MEDIUM'.ttf</string>
-		<string>POPPINS-MEDIUMITALIC.ttf</string>
-		<string>POPPINS-REGULAR.ttf</string>
-		<string>POPPINS-SEMIBOLD.ttf</string>
-		<string>POPPINS-SEMIBOLDITALIC.ttf</string>
-		<string>POPPINS-THIN.ttf</string>
-		<string>POPPINS-THINITALIC.ttf</string>
-		<string>ROBOTO-BLACK.ttf</string>
-		<string>ROBOTO-BLACKITALIC.ttf</string>
-		<string>ROBOTO-BOLD.ttf</string>
-		<string>ROBOTO-BOLDITALIC.ttf</string>
-		<string>ROBOTO-ITALIC.ttf</string>
-		<string>ROBOTO-LIGHT.ttf</string>
-		<string>ROBOTO-LIGHTITALIC.ttf</string>
-		<string>ROBOTO-MEDIUM.ttf</string>
-		<string>ROBOTO-MEDIUMITALIC.ttf</string>
-		<string>ROBOTO-REGULAR.ttf</string>
-		<string>ROBOTO-THIN.ttf</string>
-		<string>ROBOTO-THINITALIC.ttf</string>
 	</array>
 </dict>
 </plist>

@@ -4,7 +4,8 @@ import styles from './styles';
 import {ImagePath} from '../../assets/images';
 
 import {CustomTextInput, CustomButtonComponent} from '../../components';
-const Login = () => {
+import {Route} from '../../navigation/route';
+const Login = props => {
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <View style={styles.mainContainer}>
@@ -13,14 +14,25 @@ const Login = () => {
             <Image source={ImagePath.LOGINLOGO} />
           </View>
           <Text style={styles.heading}>LOGIN</Text>
-          <CustomTextInput label={'Email'} />
-          <CustomTextInput label={'Password'} />
+          <CustomTextInput
+            secureTextEntry={false}
+            label={'Email'}
+            keyboardType={'email-address'}
+          />
+          <CustomTextInput
+            keyboardType={'number-pad'}
+            secureTextEntry={true}
+            label={'Password'}
+          />
           <CustomButtonComponent label={'SIGN IN'} />
           <View style={styles.routeLinks}>
             <TouchableOpacity>
               <Text style={styles.routeLinksText}>Create Account</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                props.navigation.navigate(Route.Forgot);
+              }}>
               <Text style={styles.routeLinksText}> Forget Password</Text>
             </TouchableOpacity>
           </View>
