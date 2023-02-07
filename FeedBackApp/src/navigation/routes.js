@@ -7,17 +7,21 @@ import {Route} from './route';
 
 const Stack = createStackNavigator();
 
-function MyStack() {
+function MyStack(props) {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={Route.Splash} component={screens.Splash} />
+      <Stack.Screen
+        name={Route.Splash}
+        component={screens.Splash}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name={Route.Signup} component={screens.Signup} />
       <Stack.Screen name={Route.Login} component={screens.Login} />
     </Stack.Navigator>
   );
 }
 
-export default function Routes() {
+export default function Routes(props) {
   return (
     <NavigationContainer>
       <MyStack />

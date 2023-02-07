@@ -1,12 +1,19 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import styles from './styles';
+import {TextInput} from 'react-native-paper';
+// import {TextInput} from '@react-native-material/core';
 
-const TextInput = () => {
+const CustomTextInput = props => {
   return (
-    <View>
-      <Text>index</Text>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.textInputStyle}
+        label={props.label}
+        theme={{colors: {primary: 'gray', underlineColor: 'transparent'}}}
+      />
     </View>
   );
 };
 
-export default TextInput;
+export default CustomTextInput;
