@@ -4,15 +4,20 @@ import styles from './styles';
 import {TextInput} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-paper';
+import LinearGradient from 'react-native-linear-gradient';
+import {COLOR} from '../../utils/color/color';
+
 // import {TextInput} from '@react-native-material/core';
 
 const CustomButtonComponent = props => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.textInputStyle}>
-        <Text>Click Me</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity style={styles.touchableView}>
+      <LinearGradient
+        colors={[COLOR.LINEARGRADIENT1, COLOR.LINEARGRADIENT2]}
+        style={styles.linearGradient}>
+        <Text style={styles.buttonText}>{props?.label}</Text>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
 
