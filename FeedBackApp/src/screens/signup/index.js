@@ -1,29 +1,27 @@
-import {View, SafeAreaView} from 'react-native';
+import { View, SafeAreaView, Text, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
+import { ImagePath } from '../../assets/images';
+
 
 const Signup = () => {
   return (
-    <SafeAreaView style={{backgroundColor: '#7E50EE'}}>
-      <View
-        style={{
-          height: '100%',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#7E50EE',
-        }}>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            height: '100%',
-            marginTop: 70,
-            borderTopStartRadius: 50,
-            borderTopEndRadius: 50,
-            width: '100%',
-          }}>
+    <SafeAreaView style={styles.SafeAreaView}>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <View style={styles.imageView}>
+            <Image source={ImagePath.LOGINLOGO} />
+          </View>
+          <View style={{
+            // backgroundColor: 'red',s
+            height: 120,
+            width: 120,
+            alignSelf: 'center',
+            borderRadius: 60,
+            marginTop: 20,
+            // borderColor:'black',
+            borderWidth:1
+          }}></View>
         </View>
       </View>
     </SafeAreaView>
