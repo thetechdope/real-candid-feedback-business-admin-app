@@ -24,7 +24,10 @@ const Login = props => {
             secureTextEntry={true}
             label={'Password'}
           />
-          <CustomButtonComponent label={'SIGN IN'} />
+          <CustomButtonComponent
+            onPress={() => props.navigation.navigate('BottomTab')}
+            label={'SIGN IN'}
+          />
           <View style={styles.routeLinks}>
             <TouchableOpacity>
               <Text style={styles.routeLinksText}>Create Account</Text>
