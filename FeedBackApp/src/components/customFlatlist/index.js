@@ -11,6 +11,7 @@ import styles from './styles';
 import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR} from '../../assets/fonts';
 import {ImagePath} from '../../assets/images';
 import {width} from '../../utils/dimensions/dimensions';
+import {COLOR} from '../../utils/color/color';
 
 const CustomFlatList = props => {
   const data = [
@@ -54,6 +55,7 @@ const CustomFlatList = props => {
                     fontSize: 14,
                     lineHeight: 20,
                     width: width * 0.56,
+                    color: COLOR.TEXTBLACK,
                   }}>
                   Name
                 </Text>
