@@ -28,16 +28,17 @@ const CustomFlatList = props => {
           return (
             <View
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 1)',
+                backgroundColor: 'rgba(255, 255, 255, 0.5)',
                 borderRadius: 20,
-                shadowColor: '#EBE7FD',
-                // shadowOffset: 1,
-                shadowOffset: {width: 0, height: 10},
+                shadowColor: '#0000001A',
                 shadowOpacity: 1,
+                elevation: 12,
+
+                shadowOffset: {width: 2, height: 10},
                 width: '90%',
                 height: 120,
                 padding: 10,
-
+                // borderColor: '#E8E8E8',
                 alignSelf: 'center',
               }}>
               <View

@@ -34,10 +34,11 @@ export default StyleSheet.create({
   meter: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,
-    shadowColor: '#EBE7FD',
-    // shadowOffset: 1,
-    shadowOffset: {width: 0, height: 10},
+    shadowColor: '#0000001A',
     shadowOpacity: 1,
+    elevation: 12,
+
+    shadowOffset: {width: 2, height: 10},
     width: '90%',
     height: 170,
     bottom: 50,
@@ -48,9 +49,14 @@ export default StyleSheet.create({
   barView: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,
-    shadowColor: '#EBE7FD',
-    shadowOffset: {width: 2, height: 10},
+    shadowColor: '#0000001A',
     shadowOpacity: 1,
+    elevation: 12,
+
+    shadowOffset: {width: 2, height: 10},
+
+    // overflow: 'visible',
+
     width: '90%',
     height: 150,
     // top: 140,
