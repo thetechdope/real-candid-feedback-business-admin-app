@@ -29,7 +29,7 @@ const Login = props => {
             label={'SIGN IN'}
           />
           <View style={styles.routeLinks}>
-            <TouchableOpacity  onPress={() => navigation.navigate('Signup')}>
+            <TouchableOpacity  onPress={() => props.navigation.navigate('Signup')}>
               <Text style={styles.routeLinksText}>Create Account</Text>
             </TouchableOpacity>
             <TouchableOpacity

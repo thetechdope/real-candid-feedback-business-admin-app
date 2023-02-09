@@ -27,9 +27,11 @@ function MyStack(props) {
         options={{headerShown: false}}
       />
       <Stack.Screen name={Route.Signup} component={screens.Signup} />
+      <Stack.Screen name={Route.Otp} component={screens.Otp}  options={{headerShown: false}} />
+
       <Stack.Screen
         name={Route.Login}
-        component={screens.Login}
+        component={screens.Login}ß
         options={{headerShown: false}}
       />
       <Stack.Screen

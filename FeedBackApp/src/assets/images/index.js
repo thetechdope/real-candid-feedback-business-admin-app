@@ -16,4 +16,8 @@ export const ImagePath = {
   BAD: require('./bad/bad.png'),
   NORMAL: require('./Normal/Normal.png'),
   GOOD: require('./Good/Good.png'),
+  ELLIPSE: require('./Ellipse/Ellipse.png'),
+  CAMERA: require('./camera/camera.png'),
+  ILLUSTRATION: require ('./Illustration_icon/Illustration_icon.png')
+
 };

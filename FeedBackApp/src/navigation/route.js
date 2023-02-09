@@ -4,4 +4,5 @@ export const Route = {
   Signup: 'Signup',
   Login: 'Login',
   Forgot: 'Forgot',
+  Otp: 'Otp',
 };
