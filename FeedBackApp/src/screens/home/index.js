@@ -13,10 +13,27 @@ import {CustomFlatList, CustomHeader} from '../../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ImagePath} from '../../assets/images';
 import {ROBOTO_MEDIUM} from '../../assets/fonts';
+import {BarChart, LineChart, PieChart} from 'react-native-gifted-charts';
+import {height, width} from '../../utils/dimensions/dimensions';
+
 const Home = () => {
-  const data = {
-    name: 'hello testing flat list',
-  };
+  const data = [
+    {
+      value: 20,
+      frontColor: '#66D464',
+      topLabelComponent: () => <Image source={ImagePath.GREENEMOJI} />,
+    },
+    {
+      value: 80,
+      frontColor: '#E9D102',
+      topLabelComponent: () => <Image source={ImagePath.YELLOWEMOJI} />,
+    },
+    {
+      value: 90,
+      frontColor: '#FA4E4E',
+      topLabelComponent: () => <Image source={ImagePath.REDEMOJI} />,
+    },
+  ];
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <View style={styles.mainContainer}>
@@ -27,7 +44,6 @@ const Home = () => {
           </TouchableOpacity>
         </View>
       </View>
-
       <View style={styles.container}>
         <View style={styles.meter}>
           <Text
@@ -44,14 +60,27 @@ const Home = () => {
               height: 200,
             }}>
             <View style={styles.barView}>
-              <Image source={ImagePath.BAR} />
+              <BarChart
+                height={height * 0.12}
+                width={width * 0.6}
+                data={data}
+                barWidth={25}
+                noOfSections={3}
+                // barBorderRadius={4}
+                roundedTop={true}
+                frontColor="lightgray"
+                yAxisThickness={0}
+                xAxisThickness={0}
+                hideAxesAndRules={true}
+                disableScroll={true}
+              />
             </View>
           </View>
           <View style={styles.Recent}>
             <Text style={styles.RecentText}>Recently Added Feedback</Text>
           </View>
           <View>
-            <CustomFlatList data={data} />
+            <CustomFlatList />
           </View>
         </ScrollView>
       </View>
