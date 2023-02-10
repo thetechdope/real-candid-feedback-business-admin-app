@@ -25,7 +25,7 @@ const Stack = createStackNavigator();
 
 function MyStack(props) {
   return (
-    <Stack.Navigator initialRouteName={'Splash'}>
+    <Stack.Navigator>
       <Stack.Screen
         name={Route.Splash}
         component={screens.Splash}
