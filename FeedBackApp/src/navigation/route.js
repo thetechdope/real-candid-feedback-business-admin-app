@@ -10,4 +10,5 @@ export const Route = {
   Feedbacks: 'Feedbacks',
   Notifications: 'Notifications',
   Setting: 'Setting',
+  Notifications: 'Notifications',
 };
