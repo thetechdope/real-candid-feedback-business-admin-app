@@ -12,6 +12,7 @@ function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen name="Home" component={screens.Home} />
+      <Tab.Screen name={Route.Feedbacks} component={screens.Feedbacks} />
       <Tab.Screen name="Settings" component={screens.Setting} />
     </Tab.Navigator>
   );
@@ -20,18 +21,23 @@ const Stack = createStackNavigator();
 
 function MyStack(props) {
   return (
-    <Stack.Navigator initialRouteName={'BottomTab'}>
+    <Stack.Navigator>
       <Stack.Screen
         name={Route.Splash}
         component={screens.Splash}
         options={{headerShown: false}}
       />
       <Stack.Screen name={Route.Signup} component={screens.Signup} />
-      <Stack.Screen name={Route.Otp} component={screens.Otp}  options={{headerShown: false}} />
+      <Stack.Screen
+        name={Route.Otp}
+        component={screens.Otp}
+        options={{headerShown: false}}
+      />
 
       <Stack.Screen
         name={Route.Login}
-        component={screens.Login}ß
+        component={screens.Login}
+        ß
         options={{headerShown: false}}
       />
       <Stack.Screen

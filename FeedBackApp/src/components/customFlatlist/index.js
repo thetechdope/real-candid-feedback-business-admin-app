@@ -10,11 +10,29 @@ import React from 'react';
 import styles from './styles';
 import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR} from '../../assets/fonts';
 import {ImagePath} from '../../assets/images';
-import {width} from '../../utils/dimensions/dimensions';
+import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
 
 const CustomFlatList = props => {
   const data = [
+    {
+      name: 'Arun Kumar',
+    },
+    {
+      name: 'Arun Kumar',
+    },
+    {
+      name: 'Arun Kumar',
+    },
+    {
+      name: 'Arun Kumar',
+    },
+    {
+      name: 'Arun Kumar',
+    },
+    {
+      name: 'Arun Kumar',
+    },
     {
       name: 'Arun Kumar',
     },
@@ -29,18 +47,21 @@ const CustomFlatList = props => {
           return (
             <View
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                backgroundColor: 'rgba(255, 255, 255,1)',
                 borderRadius: 20,
-                shadowColor: '#0000001A',
+                shadowColor: '#02001A',
                 shadowOpacity: 1,
                 elevation: 12,
 
                 shadowOffset: {width: 2, height: 10},
                 width: '90%',
-                height: 120,
+                height: height * 0.13,
                 padding: 10,
                 // borderColor: '#E8E8E8',
                 alignSelf: 'center',
+                overflow: 'hidden',
+                justifyContent: 'center',
+                marginBottom: 10,
               }}>
               <View
                 style={{

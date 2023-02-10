@@ -34,7 +34,7 @@ export default StyleSheet.create({
   meter: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,
-    shadowColor: '#0000001A',
+    shadowColor: '#02001A',
     shadowOpacity: 1,
     elevation: 12,
 
@@ -49,7 +49,7 @@ export default StyleSheet.create({
   barView: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,
-    shadowColor: '#0000001A',
+    shadowColor: '#02001A',
     shadowOpacity: 1,
     elevation: 12,
 
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     // overflow: 'visible',
 
     width: '90%',
-    height: 150,
+    height: height * 0.22,
     // top: 140,
     // marginTop: 10,
     justifyContent: 'center',

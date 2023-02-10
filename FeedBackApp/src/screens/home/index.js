@@ -21,17 +21,23 @@ const Home = () => {
     {
       value: 20,
       frontColor: '#66D464',
-      topLabelComponent: () => <Image source={ImagePath.GREENEMOJI} />,
+      topLabelComponent: () => (
+        <Image source={ImagePath.GREENEMOJI} style={{marginBottom: 10}} />
+      ),
     },
     {
       value: 80,
       frontColor: '#E9D102',
-      topLabelComponent: () => <Image source={ImagePath.YELLOWEMOJI} />,
+      topLabelComponent: () => (
+        <Image source={ImagePath.YELLOWEMOJI} style={{marginBottom: 10}} />
+      ),
     },
     {
       value: 90,
       frontColor: '#FA4E4E',
-      topLabelComponent: () => <Image source={ImagePath.REDEMOJI} />,
+      topLabelComponent: () => (
+        <Image source={ImagePath.REDEMOJI} style={{marginBottom: 10}} />
+      ),
     },
   ];
   return (
