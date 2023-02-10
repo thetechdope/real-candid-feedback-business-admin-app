@@ -60,41 +60,42 @@ const Home = props => {
           </Text>
           <Image source={ImagePath.BAD} />
         </View>
-        {/* <ScrollView> */}
-        <View
-          style={{
-            height: height * 0.2,
-            // backgroundColor: 'red',
-            width: width * 0.8,
-            // overflow: 'hidden',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <View style={styles.barView}>
-            <BarChart
-              height={height * 0.12}
-              width={width * 0.6}
-              data={data}
-              barWidth={20}
-              noOfSections={3}
-              disablePress
-              // barBorderRadius={4}
-              roundedTop={true}
-              frontColor="lightgray"
-              yAxisThickness={0}
-              xAxisThickness={0}
-              hideAxesAndRules={true}
-              disableScroll={true}
-            />
+        <ScrollView>
+          <View
+            style={{
+              height: height * 0.23,
+              // backgroundColor: 'red',
+              width: width * 0.8,
+              // overflow: 'hidden',
+              justifyContent: 'center',
+              alignItems: 'center',
+              alignSelf: 'center',
+            }}>
+            <View style={styles.barView}>
+              <BarChart
+                height={height * 0.12}
+                width={width * 0.6}
+                data={data}
+                barWidth={20}
+                noOfSections={3}
+                disablePress
+                // barBorderRadius={4}
+                roundedTop={true}
+                frontColor="lightgray"
+                yAxisThickness={0}
+                xAxisThickness={0}
+                hideAxesAndRules={true}
+                disableScroll={true}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.Recent}>
-          <Text style={styles.RecentText}>Recently Added Feedback</Text>
-        </View>
-        <View>
-          <CustomFlatList />
-        </View>
-        {/* </ScrollView> */}
+          <View style={styles.Recent}>
+            <Text style={styles.RecentText}>Recently Added Feedback</Text>
+          </View>
+          <View>
+            <CustomFlatList />
+          </View>
+        </ScrollView>
       </View>
       {/* </ScrollView> */}
     </SafeAreaView>
