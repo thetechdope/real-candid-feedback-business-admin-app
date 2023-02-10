@@ -8,4 +8,5 @@ export const Route = {
   Feedbacks: 'Feedbacks',
   Notifications: 'Notifications',
   Feedbacks: 'Feedbacks',
+  Notifications: 'Notifications',
 };
