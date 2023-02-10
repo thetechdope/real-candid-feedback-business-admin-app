@@ -15,8 +15,9 @@ import {ImagePath} from '../../assets/images';
 import {ROBOTO_MEDIUM} from '../../assets/fonts';
 import {BarChart, LineChart, PieChart} from 'react-native-gifted-charts';
 import {height, width} from '../../utils/dimensions/dimensions';
+import {Route} from '../../navigation/route';
 
-const Home = () => {
+const Home = props => {
   const data = [
     {
       value: 20,
@@ -45,7 +46,8 @@ const Home = () => {
       <View style={styles.mainContainer}>
         <View style={styles.title}>
           <Text style={styles.titleText}>HOME</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate(Route.Notifications)}>
             <Icon name="bell" color={'#FFFFFF'} size={24} />
           </TouchableOpacity>
         </View>
@@ -58,37 +60,41 @@ const Home = () => {
           </Text>
           <Image source={ImagePath.BAD} />
         </View>
-        <ScrollView>
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: 200,
-            }}>
-            <View style={styles.barView}>
-              <BarChart
-                height={height * 0.12}
-                width={width * 0.6}
-                data={data}
-                barWidth={25}
-                noOfSections={3}
-                // barBorderRadius={4}
-                roundedTop={true}
-                frontColor="lightgray"
-                yAxisThickness={0}
-                xAxisThickness={0}
-                hideAxesAndRules={true}
-                disableScroll={true}
-              />
-            </View>
+        {/* <ScrollView> */}
+        <View
+          style={{
+            height: height * 0.2,
+            // backgroundColor: 'red',
+            width: width * 0.8,
+            // overflow: 'hidden',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <View style={styles.barView}>
+            <BarChart
+              height={height * 0.12}
+              width={width * 0.6}
+              data={data}
+              barWidth={20}
+              noOfSections={3}
+              disablePress
+              // barBorderRadius={4}
+              roundedTop={true}
+              frontColor="lightgray"
+              yAxisThickness={0}
+              xAxisThickness={0}
+              hideAxesAndRules={true}
+              disableScroll={true}
+            />
           </View>
-          <View style={styles.Recent}>
-            <Text style={styles.RecentText}>Recently Added Feedback</Text>
-          </View>
-          <View>
-            <CustomFlatList />
-          </View>
-        </ScrollView>
+        </View>
+        <View style={styles.Recent}>
+          <Text style={styles.RecentText}>Recently Added Feedback</Text>
+        </View>
+        <View>
+          <CustomFlatList />
+        </View>
+        {/* </ScrollView> */}
       </View>
       {/* </ScrollView> */}
     </SafeAreaView>

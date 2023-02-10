@@ -34,13 +34,15 @@ export default StyleSheet.create({
   meter: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,
-    shadowColor: '#02001A',
+    shadowColor: '#EBE7FD',
     shadowOpacity: 1,
     elevation: 12,
+    borderColor: '#EBE7FD',
+    borderWidth: 1,
 
     shadowOffset: {width: 2, height: 10},
     width: '90%',
-    height: 170,
+    height: height * 0.2,
     bottom: 50,
     position: 'relative',
     justifyContent: 'space-evenly',
@@ -49,20 +51,24 @@ export default StyleSheet.create({
   barView: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,
-    shadowColor: '#02001A',
+    shadowColor: '#EBE7FD',
     shadowOpacity: 1,
     elevation: 12,
+    borderColor: '#EBE7FD',
+    borderWidth: 1,
 
     shadowOffset: {width: 2, height: 10},
 
     // overflow: 'visible',
 
-    width: '90%',
+    width: width * 0.7,
     height: height * 0.22,
     // top: 140,
-    // marginTop: 10,
+    // marginTop: 0,
+    marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    // alignSelf: 'center',
   },
   Recent: {
     height: height * 0.08,

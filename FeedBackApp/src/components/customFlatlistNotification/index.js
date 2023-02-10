@@ -15,7 +15,7 @@ import {ImagePath} from '../../assets/images';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
 
-const CustomFlatList = props => {
+const CustomFlatListNotification = props => {
   const data = [
     {
       name: 'Arun Kumar',
@@ -69,7 +69,18 @@ const CustomFlatList = props => {
                   marginBottom: 10,
                   marginTop: 10,
                 }}>
-                <View
+                <View style={{width: 300}}>
+                  <Text
+                    style={{
+                      color: '#585954',
+                      lineHeight: 20,
+                      fontSize: 14,
+                      fontFamily: ROBOTO_REGULAR,
+                    }}>
+                    Lorem Ipsum is simply dummy text of the printing.
+                  </Text>
+                </View>
+                {/* <View
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
@@ -91,29 +102,25 @@ const CustomFlatList = props => {
                     style={{color: '#797979', fontSize: 13, lineHeight: 20}}>
                     1 day ago
                   </Text>
-                </View>
+                </View> */}
                 <View
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    // padding: 10,
                   }}>
                   <View>
                     <Image
                       source={ImagePath.ELLIPSE}
-                      style={{height: 50, width: 50}}
+                      style={{height: 20, width: 20}}
                     />
                   </View>
-                  <View style={{marginLeft: 20, width: 300}}>
+                  <View style={{width: 300}}>
                     <Text
-                      style={{
-                        color: '#585954',
-                        lineHeight: 20,
-                        fontSize: 14,
-                        fontFamily: ROBOTO_REGULAR,
-                      }}>
-                      Lorem Ipsum is simply dummy text of the printing.
+                      style={{color: '#797979', fontSize: 13, lineHeight: 20}}>
+                      10 min ago
                     </Text>
                   </View>
                 </View>
@@ -126,4 +133,4 @@ const CustomFlatList = props => {
   );
 };
 
-export default CustomFlatList;
+export default CustomFlatListNotification;

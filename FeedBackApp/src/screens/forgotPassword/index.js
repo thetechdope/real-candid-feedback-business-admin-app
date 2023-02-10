@@ -16,10 +16,11 @@ import {
 import {ImagePath} from '../../assets/images';
 import {Route} from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 const ForgotPassword = props => {
   return (
     <CustomHeader>
-      <KeyboardAvoidingView>
+      <KeyboardAwareScrollView>
         <View style={styles.mainView}>
           <TouchableOpacity
             onPress={() => {
@@ -55,7 +56,7 @@ const ForgotPassword = props => {
           </View>
           <CustomButtonComponent label={'SEND'} />
         </View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </CustomHeader>
   );
 };

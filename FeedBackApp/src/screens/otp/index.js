@@ -1,10 +1,7 @@
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
-import {
-  CustomButtonComponent,
-  CustomHeader,
-} from '../../components';
+import {CustomButtonComponent, CustomHeader} from '../../components';
 import {ImagePath} from '../../assets/images';
 import {Route} from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';

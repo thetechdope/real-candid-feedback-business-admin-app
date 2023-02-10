@@ -6,4 +6,5 @@ export const Route = {
   Forgot: 'Forgot',
   Otp: 'Otp',
   Feedbacks: 'Feedbacks',
+  Notifications: 'Notifications',
 };

@@ -18,6 +18,7 @@ export const ImagePath = {
   GOOD: require('./Good/Good.png'),
   ELLIPSE: require('./Ellipse/Ellipse.png'),
   CAMERA: require('./camera/camera.png'),
-  ILLUSTRATION: require ('./Illustration_icon/Illustration_icon.png')
-
+  ILLUSTRATION: require('./Illustration_icon/Illustration_icon.png'),
+  ANONYMOUS: require('./noun-anonymous-225644/noun-anonymous-225644.png'),
+  REGISTERED: require('./Registered/Registered.png'),
 };
