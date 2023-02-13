@@ -3,7 +3,7 @@ import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
 export default StyleSheet.create({
   flatListContainer: {
-    height: height * 0.9,
+    height: height * 0.7,
     width: width * 1,
     // backgroundColor: 'red',
     shadowColor: '#EBE7FD',

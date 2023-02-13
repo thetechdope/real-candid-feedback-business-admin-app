@@ -7,4 +7,5 @@ export const Route = {
   Otp: 'Otp',
   Feedbacks: 'Feedbacks',
   Notifications: 'Notifications',
+  Feedbacks: 'Feedbacks',
 };
