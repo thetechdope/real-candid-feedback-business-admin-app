@@ -19,6 +19,11 @@ export const ImagePath = {
   ELLIPSE: require('./Ellipse/Ellipse.png'),
   CAMERA: require('./camera/camera.png'),
   ILLUSTRATION: require('./Illustration_icon/Illustration_icon.png'),
-  ANONYMOUS: require('./noun-anonymous-225644/noun-anonymous-225644.png'),
-  REGISTERED: require('./Registered/Registered.png'),
+  LOCATION: require('./Location/Location.png'),
+  UPDATE: require('./update/update.png'),
+  LOCK: require('./Lock/Lock.png'),
+  DELETE: require('./Delete/Delete.png'),
+  LOGOUT: require('./Logout/Logout.png'),
+  BLACKBELL: require('./BlackBell/Blackbell.png'),
+  GREENBIG: require('./GreenBig/GreenBig.png'),
 };

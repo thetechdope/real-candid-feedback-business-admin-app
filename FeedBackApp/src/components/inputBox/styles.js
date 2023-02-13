@@ -11,7 +11,7 @@ export default StyleSheet.create({
         alignSelf: 'center',
         // marginTop: 50,
         color: COLOR.TEXTBLACK,
-        fontSize: 18,
+        fontSize: 14,
         paddingLeft: 15,
         borderRadius: 10
       }

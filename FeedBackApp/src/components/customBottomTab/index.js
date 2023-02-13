@@ -8,7 +8,7 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
       style={{
         flexDirection: 'row',
         // justifyContent: 'center',
-        // alignItems: 'center',
+        alignItems: 'center',
       }}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
@@ -45,8 +45,9 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
           <View
             style={{
               width: width * 0.32,
-              height: height * 0.1,
-            }}>
+              height: height * 0.08,
+            }}
+            key={index}>
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityState={isFocused ? {selected: true} : {}}
@@ -62,6 +63,8 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
                     ? 'home'
                     : label == 'Feedbacks'
                     ? 'message'
+                    : label == 'Setting'
+                    ? 'settings'
                     : null
                 }
                 style={{marginLeft: 50}}

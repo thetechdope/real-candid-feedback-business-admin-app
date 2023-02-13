@@ -30,7 +30,12 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 30,
   },
-  titleText: {fontSize: 24, lineHeight: 29, color: '#FFFFFF'},
+  titleText: {
+    fontSize: 24,
+    lineHeight: 29,
+    color: '#FFFFFF',
+    fontFamily: ROBOTO_MEDIUM,
+  },
   meter: {
     backgroundColor: 'rgba(255, 255, 255, 1)',
     borderRadius: 20,

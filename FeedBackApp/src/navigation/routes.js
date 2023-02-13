@@ -8,16 +8,30 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import CustomBottomTab from '../components/customBottomTab';
 
 const Tab = createBottomTabNavigator();
-
+function HomeRoute() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Route.Home}
+        component={screens.Home}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Route.profileFromFlatList}
+        component={screens.ProfileFromFlatList}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
 function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}
-      tabBar={props => <CustomBottomTab {...props} />}
-      initialRouteName={Route.Home}>
-      <Tab.Screen name={Route.Home} component={screens.Home} />
+      tabBar={props => <CustomBottomTab {...props} />}>
+      <Tab.Screen name={Route.Home} component={HomeRoute} />
       <Tab.Screen name={Route.Feedbacks} component={screens.Feedbacks} />
-      <Tab.Screen name="Settings" component={screens.Setting} />
+      <Tab.Screen name={Route.Setting} component={screens.Setting} />
     </Tab.Navigator>
   );
 }
@@ -31,7 +45,11 @@ function MyStack(props) {
         component={screens.Splash}
         options={{headerShown: false}}
       />
-      <Stack.Screen name={Route.Signup} component={screens.Signup} />
+      <Stack.Screen
+        name={Route.Signup}
+        component={screens.Signup}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name={Route.Otp}
         component={screens.Otp}
@@ -41,7 +59,6 @@ function MyStack(props) {
       <Stack.Screen
         name={Route.Login}
         component={screens.Login}
-        ß
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -49,6 +66,7 @@ function MyStack(props) {
         component={screens.ForgotPassword}
         options={{headerShown: false}}
       />
+     
       <Stack.Screen
         name={'BottomTab'}
         component={MyTabs}
@@ -56,7 +74,17 @@ function MyStack(props) {
       />
       <Stack.Screen
         name={Route.Notifications}
-        component={screens.Notifactions}
+        component={screens.Notifications}
+        options={{headerShown: false}}
+      />
+       <Stack.Screen
+        name={Route.ChangePassword}
+        component={screens.ChangePassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Route.EditProfile}
+        component={screens.EditProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

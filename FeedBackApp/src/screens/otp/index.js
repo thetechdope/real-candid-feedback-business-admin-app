@@ -38,7 +38,10 @@ const Otp = props => {
             </TouchableOpacity>
           </Text>
         </View>
-        <CustomButtonComponent label={'SUBMIT'} />
+        <CustomButtonComponent label={'SUBMIT'} 
+        onPress={()=>{
+          props.navigation.navigate("BottomTab")
+        }}/>
       </View>
     </CustomHeader>
   );

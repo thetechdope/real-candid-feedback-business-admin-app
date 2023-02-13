@@ -69,7 +69,7 @@ const CustomFlatListNotification = props => {
                   marginBottom: 10,
                   marginTop: 10,
                 }}>
-                <View style={{width: 300}}>
+                <View style={{width: width * 0.9}}>
                   <Text
                     style={{
                       color: '#585954',
@@ -77,7 +77,7 @@ const CustomFlatListNotification = props => {
                       fontSize: 14,
                       fontFamily: ROBOTO_REGULAR,
                     }}>
-                    Lorem Ipsum is simply dummy text of the printing.
+                    Lorem Ipsum is simply dummy text of the printing.djfgdkj
                   </Text>
                 </View>
                 {/* <View
@@ -119,7 +119,11 @@ const CustomFlatListNotification = props => {
                   </View>
                   <View style={{width: 300}}>
                     <Text
-                      style={{color: '#797979', fontSize: 13, lineHeight: 20}}>
+                      style={{
+                        color: '#797979',
+                        fontSize: 13,
+                        lineHeight: 20,
+                      }}>
                       10 min ago
                     </Text>
                   </View>
