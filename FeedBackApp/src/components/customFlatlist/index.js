@@ -18,40 +18,47 @@ import {COLOR} from '../../utils/color/color';
 const CustomFlatList = props => {
   const data = [
     {
+      key: 1,
+      name: 'Arun Kumar',
+    },
+    {
+      key: 2,
       name: 'Arun Kumar',
     },
     {
       name: 'Arun Kumar',
+      key: 3,
     },
     {
       name: 'Arun Kumar',
+      key: 4,
     },
     {
       name: 'Arun Kumar',
+      key: 5,
     },
     {
       name: 'Arun Kumar',
+      key: 7,
     },
     {
       name: 'Arun Kumar',
-    },
-    {
-      name: 'Arun Kumar',
+      key: 6,
     },
   ]; // console.log(props);
   return (
     <View style={styles.flatListContainer}>
       <FlatList
+        nestedScrollEnabled={true}
         // style={{height: height * 0.3, width: '100%', backgroundColor: 'red'}}
-        keyExtractor={(item, index) => {
-          index.toString();
-        }}
+        keyExtractor={item => item.key}
         data={data}
         renderItem={item => {
           // console.log(item?.item);
           return (
             <TouchableWithoutFeedback onPress={props.onPress}>
               <View
+                key={item.item.key}
                 style={{
                   backgroundColor: 'rgba(255, 255, 255,1)',
                   borderRadius: 20,

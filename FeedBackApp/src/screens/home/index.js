@@ -99,11 +99,13 @@ const Home = props => {
             <Text style={styles.RecentText}>Recently Added Feedback</Text>
           </View>
           <View>
-            <CustomFlatList
-              onPress={() =>
-                props.navigation.navigate(Route.profileFromFlatList)
-              }
-            />
+            <ScrollView horizontal={true} key={'flat'}>
+              <CustomFlatList
+                onPress={() =>
+                  props.navigation.navigate(Route.profileFromFlatList)
+                }
+              />
+            </ScrollView>
           </View>
         </ScrollView>
       </View>
