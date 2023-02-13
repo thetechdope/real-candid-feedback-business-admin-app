@@ -25,13 +25,17 @@ const Stack = createStackNavigator();
 
 function MyStack(props) {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={'Splash'}>
       <Stack.Screen
         name={Route.Splash}
         component={screens.Splash}
         options={{headerShown: false}}
       />
-      <Stack.Screen name={Route.Signup} component={screens.Signup} />
+      <Stack.Screen
+        name={Route.Signup}
+        component={screens.Signup}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name={Route.Otp}
         component={screens.Otp}
@@ -49,7 +53,7 @@ function MyStack(props) {
         component={screens.ForgotPassword}
         options={{headerShown: false}}
       />
-       {/* <Stack.Screen
+      {/* <Stack.Screen
         name={Route.Setting}
         component={screens.Setting}
         options={{headerShown: false}}
