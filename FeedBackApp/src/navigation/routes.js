@@ -13,11 +13,10 @@ function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}
-      tabBar={props => <CustomBottomTab {...props} />}
-      initialRouteName={Route.Home}>
+      tabBar={props => <CustomBottomTab {...props} />}>
       <Tab.Screen name={Route.Home} component={screens.Home} />
       <Tab.Screen name={Route.Feedbacks} component={screens.Feedbacks} />
-      <Tab.Screen name="Settings" component={screens.Setting} />
+      <Tab.Screen name={Route.Setting} component={screens.Setting} />
     </Tab.Navigator>
   );
 }
@@ -65,7 +64,7 @@ function MyStack(props) {
       />
       <Stack.Screen
         name={Route.Notifications}
-        component={screens.Notifactions}
+        component={screens.Notifications}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

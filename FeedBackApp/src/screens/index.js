@@ -5,7 +5,7 @@ export {default as Home} from './home';
 export {default as EditProfile} from './editProfile';
 export {default as Feedbacks} from './feedbacks';
 export {default as ForgotPassword} from './forgotPassword';
-export {default as Notifactions} from './notifications';
+export {default as Notifications} from './notifications';
 export {default as Otp} from './otp';
 export {default as Setting} from './setting';
 export {default as Splash} from './splash';
