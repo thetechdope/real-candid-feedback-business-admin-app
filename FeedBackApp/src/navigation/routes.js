@@ -71,7 +71,7 @@ function MyStack(props) {
         name={Route.Setting}
         component={screens.Setting}
         options={{headerShown: false}}
-      /> */}
+      />
       <Stack.Screen
         name={'BottomTab'}
         component={MyTabs}

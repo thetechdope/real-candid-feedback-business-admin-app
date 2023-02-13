@@ -54,7 +54,11 @@ const ForgotPassword = props => {
               </TouchableOpacity>
             </Text>
           </View>
-          <CustomButtonComponent label={'SEND'} />
+          <CustomButtonComponent 
+          onPress={()=>{
+            props.navigation.navigate('Otp')
+          }}
+          label={'SEND'} />
         </View>
       </KeyboardAwareScrollView>
     </CustomHeader>

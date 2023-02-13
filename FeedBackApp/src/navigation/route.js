@@ -11,4 +11,9 @@ export const Route = {
 
   Setting: 'Setting',
   Setting: 'Setting',
+  EditProfile: 'EditProfile',
+  ChangePassword: 'ChangePassword',
+  ResetPassword: 'ResetPassword',
+
+
 };
