@@ -49,6 +49,11 @@ function MyStack(props) {
         component={screens.ForgotPassword}
         options={{headerShown: false}}
       />
+       {/* <Stack.Screen
+        name={Route.Setting}
+        component={screens.Setting}
+        options={{headerShown: false}}
+      /> */}
       <Stack.Screen
         name={'BottomTab'}
         component={MyTabs}
