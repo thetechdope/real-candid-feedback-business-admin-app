@@ -16,4 +16,5 @@ export const Route = {
   ResetPassword: 'ResetPassword',
 
 
+  Dashboard: 'Dashboard',
 };

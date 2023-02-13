@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {ROBOTO_REGULAR} from '../../assets/fonts';
-
+import {height, width} from '../../utils/dimensions/dimensions';
+import {COLOR} from '../../utils/color/color';
 export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
@@ -48,6 +49,29 @@ export default StyleSheet.create({
   },
   inputSearchStyle: {
     height: 40,
+    fontSize: 16,
+  },
+  linearGradient: {
+    height: height * 0.12,
+    width: width * 0.95,
+    overflow: 'hidden',
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
+    // alignItems: 'center',
+    // borderRadius: 40,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+  },
+  touchableView: {
+    height: height * 0.13,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: COLOR.TEXTWHITE,
+    // fontWeight: 30,
+    fontFamily: ROBOTO_REGULAR,
+    lineHeight: 24,
     fontSize: 16,
   },
 });
