@@ -46,28 +46,31 @@ const Setting = props => {
               <Text style={{color: 'grey'}}>Jakarta, Indonesia</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => props.navigation.navigate('EditProfile')}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('EditProfile')}>
             <Image source={ImagePath.UPDATE} />
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity
           onPress={() => props.navigation.navigate('ChangePassword')}
-
           style={{
             flexDirection: 'row',
             borderWidth: 0.3,
             borderColor: 'grey',
             marginTop: '15%',
             height: '10%',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
-          <Image source={ImagePath.LOCK} style={{ margin: 10 }} />
-          <Text style={{
-            fontSize: 15,
-            color: 'grey',
-            // fontWeight: 'bold'
-          }}>Change Password</Text>
+          <Image source={ImagePath.LOCK} style={{margin: 10}} />
+          <Text
+            style={{
+              fontSize: 15,
+              color: 'grey',
+              // fontWeight: 'bold'
+            }}>
+            Change Password
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('Login')}
@@ -77,29 +80,36 @@ const Setting = props => {
             borderColor: 'grey',
             // marginTop: 20,
             height: '10%',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
-          <Image source={ImagePath.DELETE} style={{ margin: 10 }} />
-          <Text style={{
-            fontSize: 15,
-            color: 'grey',
-            // fontWeight: 'bold'
-          }}>Delete Account</Text>
+          <Image source={ImagePath.DELETE} style={{margin: 10}} />
+          <Text
+            style={{
+              fontSize: 15,
+              color: 'grey',
+              // fontWeight: 'bold'
+            }}>
+            Delete Account
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{
-          flexDirection: 'row',
-          borderWidth: 0.3,
-          borderColor: 'grey',
-          // marginTop: 20,
-          height: '10%',
-          alignItems: 'center'
-        }}>
-          <Image source={ImagePath.LOGOUT} style={{ margin: 10 }} />
-          <Text style={{
-            fontSize: 15,
-            color: 'grey',
-            // fontWeight: 'bold'
-          }}>Logout</Text>
+        <TouchableOpacity
+          style={{
+            flexDirection: 'row',
+            borderWidth: 0.3,
+            borderColor: 'grey',
+            // marginTop: 20,
+            height: '10%',
+            alignItems: 'center',
+          }}>
+          <Image source={ImagePath.LOGOUT} style={{margin: 10}} />
+          <Text
+            style={{
+              fontSize: 15,
+              color: 'grey',
+              // fontWeight: 'bold'
+            }}>
+            Logout
+          </Text>
         </TouchableOpacity>
       </View>
     </CustomHeader>

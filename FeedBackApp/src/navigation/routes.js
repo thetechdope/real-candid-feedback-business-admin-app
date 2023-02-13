@@ -12,7 +12,7 @@ function HomeRoute() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={Route.Home}
+        name={Route.Dashboard}
         component={screens.Home}
         options={{headerShown: false}}
       />
