@@ -12,7 +12,7 @@ function HomeRoute() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={Route.Splash}
+        name={Route.Home}
         component={screens.Home}
         options={{headerShown: false}}
       />
@@ -59,7 +59,6 @@ function MyStack(props) {
       <Stack.Screen
         name={Route.Login}
         component={screens.Login}
-        ß
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -67,11 +66,7 @@ function MyStack(props) {
         component={screens.ForgotPassword}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
-        name={Route.Setting}
-        component={screens.Setting}
-        options={{headerShown: false}}
-      />
+     
       <Stack.Screen
         name={'BottomTab'}
         component={MyTabs}
@@ -80,6 +75,16 @@ function MyStack(props) {
       <Stack.Screen
         name={Route.Notifications}
         component={screens.Notifications}
+        options={{headerShown: false}}
+      />
+       <Stack.Screen
+        name={Route.ChangePassword}
+        component={screens.ChangePassword}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Route.EditProfile}
+        component={screens.EditProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

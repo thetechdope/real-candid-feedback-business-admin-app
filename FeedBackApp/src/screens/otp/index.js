@@ -40,7 +40,7 @@ const Otp = props => {
         </View>
         <CustomButtonComponent label={'SUBMIT'} 
         onPress={()=>{
-          props.navigation.navigate("ResetPassword")
+          props.navigation.navigate("BottomTab")
         }}/>
       </View>
     </CustomHeader>
