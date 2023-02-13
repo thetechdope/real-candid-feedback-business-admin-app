@@ -43,6 +43,9 @@ const CustomFlatList = props => {
     <View style={styles.flatListContainer}>
       <FlatList
         // style={{height: height * 0.3, width: '100%', backgroundColor: 'red'}}
+        keyExtractor={(item, index) => {
+          index.toString();
+        }}
         data={data}
         renderItem={item => {
           // console.log(item?.item);
