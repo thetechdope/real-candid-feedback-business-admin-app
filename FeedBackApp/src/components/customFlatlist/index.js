@@ -50,7 +50,7 @@ const CustomFlatList = props => {
         renderItem={item => {
           // console.log(item?.item);
           return (
-            <TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={props.onPress}>
               <View
                 style={{
                   backgroundColor: 'rgba(255, 255, 255,1)',

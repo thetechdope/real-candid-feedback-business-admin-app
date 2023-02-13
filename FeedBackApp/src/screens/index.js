@@ -10,3 +10,4 @@ export {default as Otp} from './otp';
 export {default as Setting} from './setting';
 export {default as Splash} from './splash';
 export {default as ResetPassword} from './resetPassword';
+export {default as ProfileFromFlatList} from './profileFromFlatlist';

@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import React from 'react';
 import styles from './styles';
@@ -16,6 +17,7 @@ import {ROBOTO_MEDIUM} from '../../assets/fonts';
 import {BarChart, LineChart, PieChart} from 'react-native-gifted-charts';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {Route} from '../../navigation/route';
+import {COLOR} from '../../utils/color/color';
 
 const Home = props => {
   const data = [
@@ -43,6 +45,10 @@ const Home = props => {
   ];
   return (
     <SafeAreaView style={styles.SafeAreaView}>
+      <StatusBar
+        backgroundColor={COLOR.COMMONCOLOR}
+        barStyle={'light-content'}
+      />
       <View style={styles.mainContainer}>
         <View style={styles.title}>
           <Text style={styles.titleText}>HOME</Text>
@@ -93,7 +99,11 @@ const Home = props => {
             <Text style={styles.RecentText}>Recently Added Feedback</Text>
           </View>
           <View>
-            <CustomFlatList />
+            <CustomFlatList
+              onPress={() =>
+                props.navigation.navigate(Route.profileFromFlatList)
+              }
+            />
           </View>
         </ScrollView>
       </View>

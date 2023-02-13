@@ -8,13 +8,28 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import CustomBottomTab from '../components/customBottomTab';
 
 const Tab = createBottomTabNavigator();
-
+function HomeRoute() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Route.Splash}
+        component={screens.Home}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Route.profileFromFlatList}
+        component={screens.ProfileFromFlatList}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
 function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}
       tabBar={props => <CustomBottomTab {...props} />}>
-      <Tab.Screen name={Route.Home} component={screens.Home} />
+      <Tab.Screen name={Route.Home} component={HomeRoute} />
       <Tab.Screen name={Route.Feedbacks} component={screens.Feedbacks} />
       <Tab.Screen name={Route.Setting} component={screens.Setting} />
     </Tab.Navigator>

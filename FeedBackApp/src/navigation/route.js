@@ -6,6 +6,7 @@ export const Route = {
   Forgot: 'Forgot',
   Otp: 'Otp',
   Feedbacks: 'Feedbacks',
+  profileFromFlatList: 'ProfileFromFlatList',
   Notifications: 'Notifications',
 
   Setting: 'Setting',
