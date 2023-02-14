@@ -13,6 +13,7 @@ const CustomTextInput = props => {
         style={styles.textInputStyle}
         secureTextEntry={props?.secureTextEntry}
         label={props.label}
+        onChangeText={props?.onChangeText}
         theme={{colors: {primary: 'gray', underlineColor: 'transparent'}}}
       />
     </View>

@@ -66,7 +66,7 @@ function MyStack(props) {
         component={screens.ForgotPassword}
         options={{headerShown: false}}
       />
-     
+
       <Stack.Screen
         name={'BottomTab'}
         component={MyTabs}
@@ -77,7 +77,7 @@ function MyStack(props) {
         component={screens.Notifications}
         options={{headerShown: false}}
       />
-       <Stack.Screen
+      <Stack.Screen
         name={Route.ChangePassword}
         component={screens.ChangePassword}
         options={{headerShown: false}}

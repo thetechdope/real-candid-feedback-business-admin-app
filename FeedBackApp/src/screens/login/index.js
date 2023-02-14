@@ -6,14 +6,32 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {ImagePath} from '../../assets/images';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import commonFunction from '../../components/CommonFunction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// import axios from 'axios';
 import {CustomTextInput, CustomButtonComponent} from '../../components';
 import {Route} from '../../navigation/route';
 const Login = props => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const data = {
+    businessEmail: email,
+    password: password,
+  };
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  async function getToken() {
+    const data = await AsyncStorage.getItem('token');
+    console.log('Login Token', data);
+  }
+
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <KeyboardAwareScrollView>
@@ -25,16 +43,26 @@ const Login = props => {
             <Text style={styles.heading}>LOGIN</Text>
             <CustomTextInput
               secureTextEntry={false}
+              onChangeText={txt => {
+                setEmail(txt);
+              }}
               label={'Email'}
               keyboardType={'email-address'}
             />
             <CustomTextInput
-              keyboardType={'number-pad'}
+              keyboardType={'default'}
               secureTextEntry={true}
               label={'Password'}
+              onChangeText={txt => {
+                setPassword(txt);
+              }}
             />
             <CustomButtonComponent
-              onPress={() => props.navigation.navigate('BottomTab')}
+              onPress={() => {
+                commonFunction(data).then(() => {
+                  props.navigation.navigate('BottomTab');
+                });
+              }}
               label={'SIGN IN'}
             />
             <View style={styles.routeLinks}>
