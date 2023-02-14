@@ -1,38 +1,21 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation} from '@react-navigation/native';
+const baseUrl = 'https://api-8p1l.onrender.com/api/businesses/';
+const commonFunction = async ({data, endpoint, method}) => {
+  console.log('prosjkdffks', data, endpoint, method);
 
-const commonFunction = async (props,a) => {
-  console.log('prosjkdffks', props);
-
-  const data = {
-    businessName: 'Ots solutions',
-    businessAddress: 'spaze platinum tower',
-    businessEmail: 'ots1@gmail.com',
-    password: 'Arun@1234',
-    businessPhoneNumber: '928349037',
-    businessWebsiteUrl: 'hdfsjf.com',
-  };
-  try {
-    if (props) {
-      const response = await axios.post(
-        'https://api-8p1l.onrender.com/api/businesses/login',
-        props,
-      );
-      console.log(response.data._id);
-      await AsyncStorage.setItem('token', response.data.token);
-      await AsyncStorage.setItem('userId', response.data._id);
-      return response;
-    } else {
-      const response = await axios.get(
-        'https://api-8p1l.onrender.com/api/businesses/',
-      );
-      console.log(response.data);
-      //   await AsyncStorage.setItem('token', response.data.token);
-      //   await AsyncStorage.setItem('userId', response.data._id);
-    }
-  } catch (error) {
-    console.error(error.response);
+  if (method === 'POST') {
+    const response = await axios.post(`${baseUrl}/${endpoint}`, data);
+    console.log(response.data);
+    await AsyncStorage.setItem('token', response.data.token);
+    await AsyncStorage.setItem('userId', response.data._id);
+    return response;
+  } else if (method === 'GET') {
+    const response = await axios.get(`${baseUrl}/${endpoint}`);
+    console.log(response.data);
+    //   await AsyncStorage.setItem('token', response.data.token);
+    //   await AsyncStorage.setItem('userId', response.data._id);
+    return response;
   }
 };
 export default commonFunction;

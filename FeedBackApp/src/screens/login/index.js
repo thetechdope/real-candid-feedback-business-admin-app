@@ -19,7 +19,7 @@ import {Route} from '../../navigation/route';
 const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const data = {
+  const LoginCredentials = {
     businessEmail: email,
     password: password,
   };
@@ -33,7 +33,11 @@ const Login = props => {
   }
   const onLogin = async () => {
     try {
-      const response = await commonFunction(data);
+      const response = await commonFunction({
+        data: LoginCredentials,
+        endpoint: '',
+        method: 'GET',
+      });
       if (response.data._id) {
         console.log('response :>> ', response.data._id);
         props.navigation.navigate('BottomTab');
