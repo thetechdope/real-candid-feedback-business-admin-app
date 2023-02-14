@@ -5,6 +5,7 @@ import {CustomButtonComponent, CustomHeader} from '../../components';
 import {ImagePath} from '../../assets/images';
 import {Route} from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import OTPTextView from 'react-native-otp-textinput';
 const Otp = props => {
   return (
     <CustomHeader>
@@ -26,6 +27,7 @@ const Otp = props => {
             Enter the OTP sent to your email.
           </Text>
         </View>
+        <OTPTextView/>
         {/* <CustomTextInput keyboardType={'email-address'} label={'Email'} /> */}
         <View style={styles.descriptionView}>
           <Text style={styles.remember}>
