@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { height, width } from '../../utils/dimensions/dimensions';
 import { COLOR } from '../../utils/color/color';
+import { ROBOTO_MEDIUM } from "../../assets/fonts";
 
 export default StyleSheet.create({
 
@@ -23,26 +24,26 @@ export default StyleSheet.create({
     borderTopRightRadius: 40,
     // backgroundColor:'red'
   },
-    heading: {
-      fontSize: 24,
-      fontFamily: 'Roboto-Medium',
-      lineHeight: 29,
-      textAlign: 'center',
-      height: height * 0.1,
-      marginTop:40,
-      // justifyContent:'center'
-    },
-  imageView: {
-    width: width * 1,
-    alignItems: 'center',
-    marginTop: 45
-  },
+    // heading: {
+    //   fontSize: 24,
+    //   fontFamily: 'Roboto-Medium',
+    //   lineHeight: 29,
+    //   textAlign: 'center',
+    //   height: height * 0.1,
+    //   marginTop:40,
+    //   // justifyContent:'center'
+    // },
+  // imageView: {
+  //   width: width * 1,
+  //   alignItems: 'center',
+  //   marginTop: 35
+  // },
   profileVw: {
     height: 120,
     width: 120,
     alignSelf: 'center',
     borderRadius: 60,
-    // marginTop: 20,
+    // marginTop:45,
   },
   camera: {
     height: 25,
@@ -57,7 +58,18 @@ export default StyleSheet.create({
     width: 120,
     alignSelf: 'center',
     borderRadius: 60,
+    marginTop:45,
     // backgroundColor:'red'
+  },
+  forgotView: {
+    // height: 40,
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 24,
+    fontFamily: ROBOTO_MEDIUM,
+    lineHeight: 29,
+    color: COLOR.TEXTBLACK,
   },
 
 

@@ -5,6 +5,9 @@ import { ImagePath } from '../../assets/images';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import InputBox from '../../components/inputBox';
 import { CustomButtonComponent } from '../../components';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { ScrollView } from 'react-native-gesture-handler';
+
 const EditProfile = (props) => {
 
   const [photo, setPhoto] = useState()
@@ -19,12 +22,30 @@ const EditProfile = (props) => {
   };
   return (
     <SafeAreaView style={styles.SafeAreaView}>
+      <ScrollView>
       <View style={styles.mainContainer}>
         <View style={styles.container}>
-          <View style={styles.imageView}>
-            <Image source={ImagePath.LOGINLOGO} />
-          </View>
+         
+          <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '90%',
+            marginLeft: 20,
+            marginTop:25
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.goBack();
+            }}>
+            <Icon name="arrow-left" size={25} color="#000" />
+          </TouchableOpacity>
 
+          <View>
+            <Text style={styles.textStyle}>Edit Profile</Text>
+          </View>
+          <Image source={ImagePath.BLACKBELL} />
+        </View>
           <View style={styles.prVw}>
             {photo ?
               <Image style={styles.profileVw} source={{ uri: photo }} /> :
@@ -39,8 +60,8 @@ const EditProfile = (props) => {
             </TouchableOpacity>
 
           </View>
-          <Text style={[styles.heading]}>Edit Profile</Text>
-          <View style={{marginTop:-40}}>
+          {/* <Text style={[styles.heading]}>Edit Profile</Text> */}
+          <View style={{marginTop:24}}>
           <InputBox
             placeHolder='Bussiness-Name'
             keyboardType='default' />
@@ -62,10 +83,9 @@ const EditProfile = (props) => {
             </View>
             <CustomButtonComponent label={'UPDATE'} 
             onPress={() => props.navigation.goBack()}/>
-
-
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
