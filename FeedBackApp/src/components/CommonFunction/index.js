@@ -1,7 +1,10 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const commonFunction = async props => {
-  console.log(props);
+import {useNavigation} from '@react-navigation/native';
+
+const commonFunction = async (props,a) => {
+  console.log('prosjkdffks', props);
+
   const data = {
     businessName: 'Ots solutions',
     businessAddress: 'spaze platinum tower',
@@ -19,6 +22,7 @@ const commonFunction = async props => {
       console.log(response.data._id);
       await AsyncStorage.setItem('token', response.data.token);
       await AsyncStorage.setItem('userId', response.data._id);
+      return response;
     } else {
       const response = await axios.get(
         'https://api-8p1l.onrender.com/api/businesses/',

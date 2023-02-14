@@ -31,7 +31,17 @@ const Login = props => {
     const data = await AsyncStorage.getItem('token');
     console.log('Login Token', data);
   }
-
+  const onLogin = async () => {
+    try {
+      const response = await commonFunction(data);
+      if (response.data._id) {
+        console.log('response :>> ', response.data._id);
+        props.navigation.navigate('BottomTab');
+      }
+    } catch (error) {
+      console.log('error :>> ', error);
+    }
+  };
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <KeyboardAwareScrollView>
@@ -59,9 +69,7 @@ const Login = props => {
             />
             <CustomButtonComponent
               onPress={() => {
-                commonFunction(data).then(() => {
-                  props.navigation.navigate('BottomTab');
-                });
+                onLogin();
               }}
               label={'SIGN IN'}
             />
