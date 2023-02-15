@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './styles';
 import {CustomFlatList, CustomHeader} from '../../components';
 import {height, width} from '../../utils/dimensions/dimensions';
@@ -8,6 +8,7 @@ import {ROBOTO_BOLD, ROBOTO_MEDIUM} from '../../assets/fonts';
 import {Dropdown} from 'react-native-element-dropdown';
 import {SelectCountry} from 'react-native-element-dropdown';
 import {ImagePath} from '../../assets/images';
+import commonFunction from '../../components/CommonFunction';
 import {Route} from '../../navigation/route';
 const Feedbacks = props => {
   const data = [
@@ -16,6 +17,9 @@ const Feedbacks = props => {
   ];
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  useEffect(() => {
+    Feedbacks();
+  }, []);
 
   const renderLabel = () => {
     if (value || isFocus) {
@@ -23,6 +27,14 @@ const Feedbacks = props => {
     }
     return null;
   };
+  async function Feedbacks(params) {
+    const response = await commonFunction({
+      data: '',
+      endpoint: 'feedbacks',
+      method: 'GET',
+    });
+    console.log('response from feedback', response.data);
+  }
 
   return (
     <CustomHeader>
@@ -123,7 +135,7 @@ const Feedbacks = props => {
           />
         </View>
       </View>
-      <View style={{backgroundColor: 'cyan', height: height * 1}}>
+      <View style={{height: height * 0.9}}>
         <CustomFlatList />
       </View>
     </CustomHeader>

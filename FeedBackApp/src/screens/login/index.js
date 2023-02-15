@@ -5,6 +5,8 @@ import {
   Image,
   TouchableOpacity,
   KeyboardAvoidingView,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
@@ -16,35 +18,39 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import axios from 'axios';
 import {CustomTextInput, CustomButtonComponent} from '../../components';
 import {Route} from '../../navigation/route';
+import {formToJSON} from 'axios';
+import {COLOR} from '../../utils/color/color';
 const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const LoginCredentials = {
     businessEmail: email,
     password: password,
   };
-  useEffect(() => {
-    getToken();
-  }, []);
 
-  async function getToken() {
-    const data = await AsyncStorage.getItem('token');
-    console.log('Login Token', data);
-  }
   const onLogin = async () => {
-    try {
-      const response = await commonFunction({
-        data: LoginCredentials,
-        endpoint: 'login',
-        method: 'POST',
-      });
-      if (response.data._id) {
-        console.log('response :>> ', response.data._id);
-        props.navigation.navigate('BottomTab');
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        const response = await commonFunction({
+          data: LoginCredentials,
+          endpoint: 'login',
+          method: 'POST',
+        });
+        // console.log('response :>> ', JSON.stringify(response.data));
+        if (response.data._id) {
+          await AsyncStorage.setItem('token', response.data.token);
+          await AsyncStorage.setItem('user', JSON.stringify(response.data));
+          props.navigation.replace('BottomTab');
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        alert('error :>> ', error);
+        // setLoading(false);
       }
-    } catch (error) {
-      console.log('error :>> ', error);
-    }
+    }, 3000);
   };
   return (
     <SafeAreaView style={styles.SafeAreaView}>
@@ -71,12 +77,15 @@ const Login = props => {
                 setPassword(txt);
               }}
             />
+
             <CustomButtonComponent
               onPress={() => {
                 onLogin();
               }}
               label={'SIGN IN'}
+              loading={loading}
             />
+
             <View style={styles.routeLinks}>
               <TouchableOpacity
                 onPress={() => props.navigation.navigate('Signup')}>

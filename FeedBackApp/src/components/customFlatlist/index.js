@@ -20,30 +20,37 @@ const CustomFlatList = props => {
     {
       key: 1,
       name: 'Arun Kumar',
+      emoji: 0,
     },
     {
       key: 2,
       name: 'Arun Kumar',
+      emoji: 2,
     },
     {
       name: 'Arun Kumar',
       key: 3,
+      emoji: 1,
     },
     {
       name: 'Arun Kumar',
       key: 4,
+      emoji: 0,
     },
     {
       name: 'Arun Kumar',
       key: 5,
+      emoji: 2,
     },
     {
       name: 'Arun Kumar',
       key: 7,
+      emoji: 0,
     },
     {
       name: 'Arun Kumar',
       key: 6,
+      emoji: 1,
     },
   ]; // console.log(props);
   return (
@@ -96,7 +103,13 @@ const CustomFlatList = props => {
                     }}>
                     {item.item.name}
                   </Text>
-                  <Image source={ImagePath.REDEMOJI} />
+                  {item.item.emoji === 0 ? (
+                    <Image source={ImagePath.REDEMOJI} />
+                  ) : item.item.emoji === 1 ? (
+                    <Image source={ImagePath.YELLOWEMOJI} />
+                  ) : (
+                    <Image source={ImagePath.GREENEMOJI} />
+                  )}
                   <Text
                     style={{color: '#797979', fontSize: 13, lineHeight: 20}}>
                     1 day ago

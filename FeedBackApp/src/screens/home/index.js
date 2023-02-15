@@ -8,7 +8,7 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './styles';
 import {CustomFlatList, CustomHeader} from '../../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,7 +18,7 @@ import {BarChart, LineChart, PieChart} from 'react-native-gifted-charts';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {Route} from '../../navigation/route';
 import {COLOR} from '../../utils/color/color';
-
+import commonFunction from '../../components/CommonFunction';
 const Home = props => {
   const data = [
     {
@@ -43,6 +43,17 @@ const Home = props => {
       ),
     },
   ];
+  useEffect(() => {
+    Feedbacks();
+  }, []);
+  async function Feedbacks(params) {
+    const response = await commonFunction({
+      data: '',
+      endpoint: 'feedbacks',
+      method: 'GET',
+    });
+    console.log(response);
+  }
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <StatusBar
