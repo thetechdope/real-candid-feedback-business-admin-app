@@ -1,6 +1,6 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const baseUrl = 'https://api-8p1l.onrender.com/api/businesses/';
+const baseUrl = 'https://api-8p1l.onrender.com/api/businesses';
 const commonFunction = async ({data, endpoint, method}) => {
   console.log('prosjkdffks', data, endpoint, method);
 

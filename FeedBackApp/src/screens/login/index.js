@@ -35,8 +35,8 @@ const Login = props => {
     try {
       const response = await commonFunction({
         data: LoginCredentials,
-        endpoint: '',
-        method: 'GET',
+        endpoint: 'login',
+        method: 'POST',
       });
       if (response.data._id) {
         console.log('response :>> ', response.data._id);
