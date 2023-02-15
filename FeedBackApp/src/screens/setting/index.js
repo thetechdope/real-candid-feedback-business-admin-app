@@ -5,7 +5,18 @@ import {CustomButtonComponent, CustomHeader} from '../../components';
 import {ImagePath} from '../../assets/images';
 import {Route} from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Setting = props => {
+  const onSignOut = async () => {
+    await AsyncStorage.clear()
+      .then(() => {
+        console.log('async items cleared');
+        props.navigation.navigate('Login');
+      })
+      .catch(error => {
+        console.log('Error while Sign  Out', error);
+      });
+  };
   return (
     <CustomHeader>
       <View style={styles.mainView}>
@@ -93,6 +104,7 @@ const Setting = props => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => onSignOut()}
           style={{
             flexDirection: 'row',
             borderWidth: 0.3,

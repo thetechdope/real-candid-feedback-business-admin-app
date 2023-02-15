@@ -43,6 +43,7 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
 
         return (
           <View
+            key={index.toString()}
             style={{
               width: width * 0.32,
               height: height * 0.09,
