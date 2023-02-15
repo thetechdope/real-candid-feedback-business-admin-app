@@ -69,7 +69,7 @@ const CustomFlatList = props => {
                   borderWidth: 1,
 
                   shadowOffset: {width: 2, height: 20},
-                  width: '90%',
+                  width: width * 0.9,
                   height: height * 0.13,
                   padding: 10,
                   // borderColor: '#E8E8E8',
@@ -94,7 +94,7 @@ const CustomFlatList = props => {
                       width: width * 0.56,
                       color: COLOR.TEXTBLACK,
                     }}>
-                    Name
+                    {item.item.name}
                   </Text>
                   <Image source={ImagePath.REDEMOJI} />
                   <Text

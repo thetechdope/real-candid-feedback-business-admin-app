@@ -98,7 +98,7 @@ const Feedbacks = props => {
                     name={'filter-variant'}
                     size={20}
                   />
-                  <Text>Filters</Text>
+                  <Text style={{color: 'black'}}>Filters</Text>
                 </View>
               ) : (
                 '...'
@@ -123,8 +123,9 @@ const Feedbacks = props => {
           />
         </View>
       </View>
-
-      <CustomFlatList />
+      <View style={{backgroundColor: 'cyan', height: height * 1}}>
+        <CustomFlatList />
+      </View>
     </CustomHeader>
   );
 };
