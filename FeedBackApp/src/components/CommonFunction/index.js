@@ -3,7 +3,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const baseUrl = 'http://34.212.54.70:3000/api/businesses';
 const commonFunction = async ({data, endpoint, method}) => {
   console.log('prosjkdffks', data, endpoint, method);
-
+  const res = {
+    businessName: 'Arun',
+    businessAddress: 'spaze',
+    businessEmail: 'arun@gmail.com',
+    password: 'Arun@1234',
+    businessPhoneNumber: '45577555',
+    businessWebsiteUrl: 'http://www.codewitharun.github.io/',
+  };
   if (method === 'POST') {
     const response = await axios.post(`${baseUrl}/${endpoint}`, data);
     // console.log(response.data);

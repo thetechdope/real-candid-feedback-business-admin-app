@@ -48,7 +48,7 @@ const Login = props => {
         }
       } catch (error) {
         setLoading(false);
-        alert('error :>> ', error);
+        Alert.alert('error :>> ', error?.response?.data?.message);
         // setLoading(false);
       }
     }, 3000);
