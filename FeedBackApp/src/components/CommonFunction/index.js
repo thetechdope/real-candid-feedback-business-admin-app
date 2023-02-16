@@ -13,7 +13,7 @@ const commonFunction = async ({data, endpoint, method}) => {
   };
   if (method === 'POST') {
     const response = await axios.post(`${baseUrl}/${endpoint}`, data);
-    // console.log(response.data);
+    console.log('ufcwjcvhcvswcv',response.data);
 
     return response;
   } else if (method === 'GET') {
