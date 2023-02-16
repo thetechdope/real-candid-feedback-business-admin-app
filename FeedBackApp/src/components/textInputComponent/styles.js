@@ -1,12 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
+import {ROBOTO_REGULAR} from '../../assets/fonts';
 
 export default StyleSheet.create({
   container: {
     justifyContent: 'center',
     // alignItems: 'center',
-    height: height * 0.07,
+    height: height * 0.08,
     // height: 27,
     // backgroundColor: 'green',
     borderWidth: 1,
@@ -19,13 +20,25 @@ export default StyleSheet.create({
   },
   textInputStyle: {
     color: 'black',
-    width: '100%',
-    height: 30,
-    backgroundColor: 'white',
+    // width: '100%',
+    height: height * 0.048,
+    // backgroundColor: 'red',
+
+    fontSize: 16,
+    lineHeight: 19,
+    fontFamily: ROBOTO_REGULAR,
   },
   label: {
-    color: COLOR.TEXTBLACK,
+    color: '#969AA8',
+    fontSize: 12,
+    fontFamily: ROBOTO_REGULAR,
+    lineHeight: 14,
     // paddingHorizontal: 20,
     // textAlign: 'left',
+  },
+  labelContainer: {
+    // backgroundColor: 'red',
+    height: height * 0.025,
+    justifyContent: 'flex-end',
   },
 });

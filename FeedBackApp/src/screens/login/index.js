@@ -20,6 +20,7 @@ import {CustomTextInput, CustomButtonComponent} from '../../components';
 import {Route} from '../../navigation/route';
 import {formToJSON} from 'axios';
 import {COLOR} from '../../utils/color/color';
+import {StatusBar} from 'react-native';
 const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -54,6 +55,10 @@ const Login = props => {
   };
   return (
     <SafeAreaView style={styles.SafeAreaView}>
+      <StatusBar
+        backgroundColor={COLOR.COMMONCOLOR}
+        barStyle={'light-content'}
+      />
       <KeyboardAwareScrollView>
         <View style={styles.mainContainer}>
           <View style={styles.container}>
