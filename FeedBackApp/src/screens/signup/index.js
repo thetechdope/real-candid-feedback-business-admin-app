@@ -18,7 +18,7 @@ const Signup = (props) => {
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
   const [url, setUrl] = useState('');
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const SignupCredentials = {
     bussinessName: name,
@@ -38,16 +38,16 @@ const onSignup = async () => {
         endpoint: '',
         method: 'POST',
       });
-      console.log('response :>> ', JSON.stringify(response));
+      // console.log('response :>> ', JSON.stringify(response.data));
       if (response.data) {
-      
-        props.navigation.navigate('Otp');
-        // setLoading(false);
+       
+        props.navigation.navigate('Login');
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);
       alert('error :>> ', error);
-      // setLoading(false);
+      setLoading(false);
     }
   }, 3000);
 
