@@ -36,7 +36,7 @@ const Login = props => {
       try {
         const response = await commonFunction({
           data: LoginCredentials,
-          endpoint: 'login',
+          endpoint: 'businesses/login',
           method: 'POST',
         });
         // console.log('response :>> ', JSON.stringify(response.data));

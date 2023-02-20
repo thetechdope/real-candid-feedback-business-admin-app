@@ -24,13 +24,29 @@ function HomeRoute() {
     </Stack.Navigator>
   );
 }
+function FeedbackRoute() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Route.Dashboard}
+        component={screens.Feedbacks}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Route.profileFromFlatList}
+        component={screens.ProfileFromFlatList}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+}
 function MyTabs() {
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false}}
       tabBar={props => <CustomBottomTab {...props} />}>
       <Tab.Screen name={Route.Home} component={HomeRoute} />
-      <Tab.Screen name={Route.Feedbacks} component={screens.Feedbacks} />
+      <Tab.Screen name={Route.Feedbacks} component={FeedbackRoute} />
       <Tab.Screen name={Route.Setting} component={screens.Setting} />
     </Tab.Navigator>
   );

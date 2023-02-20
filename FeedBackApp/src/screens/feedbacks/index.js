@@ -1,4 +1,11 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './styles';
 import {CustomFlatList, CustomHeader} from '../../components';
@@ -17,6 +24,10 @@ const Feedbacks = props => {
   ];
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [rating, setrating] = useState(0);
+  const [name, setname] = useState('');
+  const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   useEffect(() => {
     Feedbacks();
   }, []);
@@ -28,12 +39,20 @@ const Feedbacks = props => {
     return null;
   };
   async function Feedbacks(params) {
-    const response = await commonFunction({
-      data: '',
-      endpoint: 'feedbacks',
-      method: 'GET',
-    });
-    console.log('response from feedback', response.data);
+    try {
+      const response = await commonFunction({
+        data: '',
+        endpoint: 'feedbacks/loggedin-business',
+        method: 'GET',
+      }).then(res => {
+        let data = [];
+        data.push(res.data);
+        setFeedbacksByUsers(res.data);
+        console.log('response from feedback', FeedbacksByUsers);
+      });
+    } catch (error) {
+      console.log(error.response.data);
+    }
   }
 
   return (
@@ -136,7 +155,10 @@ const Feedbacks = props => {
         </View>
       </View>
       <View style={{height: height * 0.9}}>
-        <CustomFlatList />
+        <CustomFlatList
+          data={FeedbacksByUsers}
+          onPress={() => props.navigation.navigate(Route.profileFromFlatList)}
+        />
       </View>
     </CustomHeader>
   );

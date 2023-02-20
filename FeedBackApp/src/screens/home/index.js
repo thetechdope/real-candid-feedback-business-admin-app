@@ -8,7 +8,7 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {CustomFlatList, CustomHeader} from '../../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -20,6 +20,7 @@ import {Route} from '../../navigation/route';
 import {COLOR} from '../../utils/color/color';
 import commonFunction from '../../components/CommonFunction';
 const Home = props => {
+  const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
   const data = [
     {
       value: 20,
@@ -43,17 +44,25 @@ const Home = props => {
       ),
     },
   ];
+  async function Feedbacks(params) {
+    try {
+      const response = await commonFunction({
+        data: '',
+        endpoint: 'feedbacks/loggedin-business',
+        method: 'GET',
+      }).then(res => {
+        let data = [];
+        data.push(res.data);
+        setFeedbacksByUsers(res.data);
+        console.log('response from Home', FeedbacksByUsers);
+      });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
   useEffect(() => {
     Feedbacks();
   }, []);
-  async function Feedbacks(params) {
-    const response = await commonFunction({
-      data: '',
-      endpoint: 'feedbacks',
-      method: 'GET',
-    });
-    console.log(response);
-  }
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <StatusBar
@@ -112,6 +121,7 @@ const Home = props => {
           <View>
             <ScrollView horizontal={true} key={'flat'}>
               <CustomFlatList
+                data={FeedbacksByUsers}
                 onPress={() =>
                   props.navigation.navigate(Route.profileFromFlatList)
                 }

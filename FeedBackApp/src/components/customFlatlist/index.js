@@ -6,9 +6,11 @@ import {
   Image,
   VirtualizedList,
   TouchableOpacity,
+  ActivityIndicator,
   TouchableWithoutFeedback,
+  RefreshControl,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './styles';
 import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR} from '../../assets/fonts';
 import {ImagePath} from '../../assets/images';
@@ -16,6 +18,7 @@ import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
 
 const CustomFlatList = props => {
+  const [refreshing, setRefreshing] = useState(false);
   const data = [
     {
       key: 1,
@@ -57,9 +60,15 @@ const CustomFlatList = props => {
     <View style={styles.flatListContainer}>
       <FlatList
         nestedScrollEnabled={true}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={<ActivityIndicator color={'black'} />}
+          />
+        }
         // style={{height: height * 0.3, width: '100%', backgroundColor: 'red'}}
-        keyExtractor={item => item.key}
-        data={data}
+        keyExtractor={(item, index) => index.toString()}
+        data={props.data}
         renderItem={item => {
           // console.log(item?.item);
           return (
@@ -101,11 +110,11 @@ const CustomFlatList = props => {
                       width: width * 0.56,
                       color: COLOR.TEXTBLACK,
                     }}>
-                    {item.item.name}
+                    {item.item.customerName}
                   </Text>
-                  {item.item.emoji === 0 ? (
+                  {item.item.rating === 0 ? (
                     <Image source={ImagePath.REDEMOJI} />
-                  ) : item.item.emoji === 1 ? (
+                  ) : item.item.rating === 1 ? (
                     <Image source={ImagePath.YELLOWEMOJI} />
                   ) : (
                     <Image source={ImagePath.GREENEMOJI} />
@@ -136,7 +145,7 @@ const CustomFlatList = props => {
                         fontSize: 14,
                         fontFamily: ROBOTO_REGULAR,
                       }}>
-                      Lorem Ipsum is simply dummy text of the printing.
+                      {item.item.feedback}
                     </Text>
                   </View>
                 </View>
