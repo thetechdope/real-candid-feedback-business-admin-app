@@ -23,37 +23,37 @@ const Signup = (props) => {
   const SignupCredentials = {
     bussinessName: name,
     businessAddress: address,
-    businessPhoneNumber:phone,
+    businessPhoneNumber: phone,
     businessEmail: email,
     password: password,
     businessWebsiteUrl: url
   };
 
-const onSignup = async () => {
-  setLoading(true);
-  setTimeout(async () => {
-    try {
-      const response = await commonFunction({
-        data: SignupCredentials,
-        endpoint: '',
-        method: 'POST',
-      });
-      // console.log('response :>> ', JSON.stringify(response.data));
-      if (response.data) {
-       
-        props.navigation.navigate('Login');
+  const onSignup = async () => {
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        const response = await commonFunction({
+          data: SignupCredentials,
+          endpoint:'/businesses/signup' ,
+          method: 'POST',
+        });
+        // console.log('response :>> ', JSON.stringify(response.data));
+        if (response.data) {
+
+          props.navigation.navigate('Login');
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        console.log('error :>> ', error);
         setLoading(false);
       }
-    } catch (error) {
-      setLoading(false);
-      alert('error :>> ', error);
-      setLoading(false);
-    }
-  }, 3000);
+    }, 3000);
 
-  
-  
-}
+
+
+  }
 
 
 
@@ -91,32 +91,32 @@ const onSignup = async () => {
             <Text style={[styles.heading]}>Sign Up</Text>
             <View style={{ marginTop: -40 }}>
               <InputBox
-              secureTextEntry={false}
-              onChangeText={txt => {
-                setName(txt);
-              }}
+                secureTextEntry={false}
+                onChangeText={txt => {
+                  setName(txt);
+                }}
                 placeHolder='Bussiness-Name'
                 keyboardType='default' />
               <InputBox
-              secureTextEntry={false}
-              onChangeText={txt => {
-                setAddress(txt);
-              }}
+                secureTextEntry={false}
+                onChangeText={txt => {
+                  setAddress(txt);
+                }}
                 placeHolder='Address'
                 keyboardType='default' />
               <InputBox
-               secureTextEntry={false}
-               onChangeText={txt => {
-                 setEmail(txt);
-               }}
+                secureTextEntry={false}
+                onChangeText={txt => {
+                  setEmail(txt);
+                }}
                 placeHolder='Email-Address'
                 keyboardType='email-address' />
               <InputBox
-              secureTextEntry={false}
-              onChangeText={txt => {
-                setPhone(txt);
-              }}
-              
+                secureTextEntry={false}
+                onChangeText={txt => {
+                  setPhone(txt);
+                }}
+
                 placeHolder='Phone No'
                 keyboardType='default' />
               <InputBox
@@ -142,8 +142,8 @@ const onSignup = async () => {
                 // loading={loading}
               }}
               loading={loading}
-              
-              />
+
+            />
 
 
           </View>
