@@ -1,15 +1,47 @@
 import {View, SafeAreaView, Text, Image, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import styles from './styles';
 import {ImagePath} from '../../assets/images';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import InputBox from '../../components/inputBox';
+// import InputBox from '../../components/inputBox';
+import CustomTextInput from '../../components/textInputComponent';
 import {CustomButtonComponent} from '../../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView} from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EditProfile = props => {
   const [photo, setPhoto] = useState();
+  const [data,setData]= useState();
+  const [businessName,setBusinessName]= useState();
+  const [email,setEmail]= useState();
+  const [phone,setPhone]= useState();
+  const [address,setAddress]= useState();
+
+
+
+
+
+
+const responseData = (item) =>{
+  console.log('item', item)
+  setBusinessName(item?.businessName)
+  setEmail(item?.businessEmail)
+  setPhone(item?.businessPhoneNumber)
+  setAddress(item?.businessAddress)
+
+
+}
+  useEffect(() => {
+  AsyncStorage.getItem("user").then((res)=>{setData(res),
+    console.log("response======",JSON.parse(res))
+    let d1= JSON.parse(res)
+    responseData(d1)
+
+  }) //  let user1 = JSON.parse(userData)
+  }, [])
+  
+ 
 
   const openCamera = async () => {
     const options = {
@@ -62,22 +94,40 @@ const EditProfile = props => {
             </View>
             {/* <Text style={[styles.heading]}>Edit Profile</Text> */}
             <View style={{marginTop: 24}}>
-              <InputBox placeHolder="Bussiness-Name" keyboardType="default" />
-              <InputBox placeHolder="Address" keyboardType="default" />
-              <InputBox
-                placeHolder="Email-Address"
-                keyboardType="email-address"
-              />
-              <InputBox placeHolder="Phone No" keyboardType="default" />
-              <InputBox
-                placeHolder="Website-URL"
-                keyboardType="email-address"
-              />
-              <InputBox placeHolder="Password" keyboardType="default" />
+            <CustomTextInput
+            value={businessName}
+              secureTextEntry={false}
+              onChangeText={txt =>setBusinessName(txt)}
+              label={"Business Name"}
+              keyboardType={'default'}
+            />
+            
+             <CustomTextInput
+            value={email}
+              secureTextEntry={false}
+              onChangeText={txt =>setEmail(txt)}
+              label={"Email"}
+              keyboardType={'default'}
+            />
+             <CustomTextInput
+            value={phone}
+              secureTextEntry={false}
+              onChangeText={txt =>setPhone(txt)}
+              label={"Phone No."}
+              keyboardType={'default'}
+            />
+             <CustomTextInput
+            value={address}
+              secureTextEntry={false}
+              onChangeText={txt =>setAddress(txt)}
+              label={"Address"}
+              keyboardType={'default'}
+            />
+            
             </View>
             <CustomButtonComponent
               label={'UPDATE'}
-              onPress={() => props.navigation.goBack()}
+              onPress={() => props.navigation.navigate('Setting')}
             />
           </View>
         </View>

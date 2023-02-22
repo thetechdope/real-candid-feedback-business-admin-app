@@ -6,7 +6,30 @@ import {ImagePath} from '../../assets/images';
 import {Route} from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OTPTextView from 'react-native-otp-textinput';
+
 const Otp = props => {
+
+  const otpCredential = {
+    businessEmail: businessEmail,
+    // otp: otp,
+   
+  };
+
+  const SubmitOtp = async() =>{
+
+    const response = await commonFunction({
+      data: otpCredential,
+      endpoint:'/businesses/verify-email' ,
+      method: 'PATCH',
+    });
+    // console.log('response :>> ', JSON.stringify(response.data));
+    if (response.data) {
+
+      props.navigation.navigate('Login');
+      // setLoading(false);
+    }
+
+  }
   return (
     <CustomHeader>
       <View style={styles.mainView}>
@@ -41,9 +64,7 @@ const Otp = props => {
           </Text>
         </View>
         <CustomButtonComponent label={'SUBMIT'} 
-        onPress={()=>{
-          props.navigation.navigate("BottomTab")
-        }}/>
+         onPress={() => SubmitOtp()}/>
       </View>
     </CustomHeader>
   );

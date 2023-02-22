@@ -1,5 +1,7 @@
 import { View, SafeAreaView, Text, Image, TouchableOpacity } from 'react-native';
+// import React from 'react';
 import React, { useState } from 'react';
+// import { useState } from 'react';
 import styles from './styles';
 import { ImagePath } from '../../assets/images';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
@@ -21,7 +23,7 @@ const Signup = (props) => {
   const [loading, setLoading] = useState(false);
 
   const SignupCredentials = {
-    bussinessName: name,
+    businessName: name,
     businessAddress: address,
     businessPhoneNumber: phone,
     businessEmail: email,
@@ -30,9 +32,9 @@ const Signup = (props) => {
   };
 
   const onSignup = async () => {
-    setLoading(true);
-    setTimeout(async () => {
-      try {
+    // setLoading(true);
+   
+      // try {
         const response = await commonFunction({
           data: SignupCredentials,
           endpoint:'/businesses/signup' ,
@@ -41,21 +43,15 @@ const Signup = (props) => {
         // console.log('response :>> ', JSON.stringify(response.data));
         if (response.data) {
 
-          props.navigation.navigate('Login');
-          setLoading(false);
+          props.navigation.navigate('Otp',{businessEmail:email});
+          // setLoading(false);
         }
-      } catch (error) {
-        setLoading(false);
-        console.log('error :>> ', error);
-        setLoading(false);
-      }
-    }, 3000);
-
-
-
+      // } catch (error) {
+      //   setLoading(false);
+      //   console.log('error :>> ', error);
+      // }
+    
   }
-
-
 
   const openCamera = async () => {
     const options = {

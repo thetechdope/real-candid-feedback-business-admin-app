@@ -36,10 +36,10 @@ const Login = props => {
       try {
         const response = await commonFunction({
           data: LoginCredentials,
-          endpoint: 'businesses/login',
+          endpoint: '/businesses/login',
           method: 'POST',
         });
-        // console.log('response :>> ', JSON.stringify(response.data));
+        console.log('response :>> ', response.data);
         if (response.data._id) {
           await AsyncStorage.setItem('token', response.data.token);
           await AsyncStorage.setItem('user', JSON.stringify(response.data));
@@ -48,7 +48,7 @@ const Login = props => {
         }
       } catch (error) {
         setLoading(false);
-        Alert.alert('error :>> ', error?.response?.data?.message);
+        console.log('error',error);
         // setLoading(false);
       }
     }, 3000);
@@ -67,6 +67,7 @@ const Login = props => {
             </View>
             <Text style={styles.heading}>LOGIN</Text>
             <CustomTextInput
+            value={email}
               secureTextEntry={false}
               onChangeText={txt => {
                 setEmail(txt);
@@ -77,6 +78,7 @@ const Login = props => {
             <CustomTextInput
               keyboardType={'default'}
               secureTextEntry={true}
+              value={password}
               label={'Password'}
               onChangeText={txt => {
                 setPassword(txt);

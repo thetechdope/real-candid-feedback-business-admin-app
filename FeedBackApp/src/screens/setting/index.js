@@ -6,14 +6,15 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles';
-import {CustomButtonComponent, CustomHeader} from '../../components';
-import {ImagePath} from '../../assets/images';
-import {Route} from '../../navigation/route';
+import { CustomButtonComponent, CustomHeader } from '../../components';
+import { ImagePath } from '../../assets/images';
+import { Route } from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {COLOR} from '../../utils/color/color';
+import { COLOR } from '../../utils/color/color';
+import commonFunction from '../../components/CommonFunction';
 const Setting = props => {
   const [user, setUser] = useState('');
   const onSignOut = async () => {
@@ -35,8 +36,37 @@ const Setting = props => {
       console.log('Error while sign out', error);
     }
   };
+  const onDelete = async () => {
+    const LoginCredentials = {
+      businessEmail: email,
+      password: password,
+    }; const response = await commonFunction({
+      // data: LoginCredentials,
+      endpoint: `/businesses/delete/${user.businessEmail}`,
+      method: 'DELETE',
+    })
+    console.log(response)
+    try {
+      const asyncStorageKeys = await AsyncStorage.getAllKeys();
+      if (asyncStorageKeys.length > 0) {
+        if (Platform.OS === 'android') {
+          await AsyncStorage.clear();
+          console.log('async items cleared android');
+          props.navigation.navigate('Login');
+        }
+        if (Platform.OS === 'ios') {
+          await AsyncStorage.multiRemove(asyncStorageKeys);
+          console.log('async items cleared from ios');
+          props.navigation.replace('Login');
+        }
+      }
+    } catch (error) {
+      console.log('Error while sign out', error);
+    }
+  };
   useEffect(() => {
     getUser();
+    
   }, []);
 
   async function getUser(params) {
@@ -76,16 +106,16 @@ const Setting = props => {
             marginLeft: 10,
           }}>
           <Image
-            style={{width: 70, height: 70, marginRight: 15}}
+            style={{ width: 70, height: 70, marginRight: 15 }}
             source={ImagePath.ELLIPSE}
           />
-          <View style={{width: '60%'}}>
-            <Text style={{fontSize: 18, color: COLOR.TEXTBLACK}}>
+          <View style={{ width: '60%' }}>
+            <Text style={{ fontSize: 18, color: COLOR.TEXTBLACK }}>
               {user?.businessName}
             </Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Image source={ImagePath.LOCATION} />
-              <Text style={{color: 'grey'}}>Jakarta, Indonesia</Text>
+              <Text style={{ color: 'grey' }}>Jakarta, Indonesia</Text>
             </View>
           </View>
           <TouchableOpacity
@@ -104,7 +134,7 @@ const Setting = props => {
             height: '10%',
             alignItems: 'center',
           }}>
-          <Image source={ImagePath.LOCK} style={{margin: 10}} />
+          <Image source={ImagePath.LOCK} style={{ margin: 10 }} />
           <Text
             style={{
               fontSize: 15,
@@ -115,7 +145,7 @@ const Setting = props => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => props.navigation.navigate('Login')}
+          onPress={() => onDelete()}
           style={{
             flexDirection: 'row',
             // borderWidth: 0.3,
@@ -124,7 +154,7 @@ const Setting = props => {
             height: '10%',
             alignItems: 'center',
           }}>
-          <Image source={ImagePath.DELETE} style={{margin: 10}} />
+          <Image source={ImagePath.DELETE} style={{ margin: 10 }} />
           <Text
             style={{
               fontSize: 15,
@@ -144,7 +174,7 @@ const Setting = props => {
             height: '10%',
             alignItems: 'center',
           }}>
-          <Image source={ImagePath.LOGOUT} style={{margin: 10}} />
+          <Image source={ImagePath.LOGOUT} style={{ margin: 10 }} />
           <Text
             style={{
               fontSize: 15,

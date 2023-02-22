@@ -14,8 +14,11 @@ const CustomTextInput = props => {
         keyboardType={props?.keyboardType ? props.keyboardType : 'default'}
         style={styles.textInputStyle}
         secureTextEntry={props?.secureTextEntry}
+        value={props.value}
         label={props.label}
+        placeholder={props.placeholder}
         onChangeText={props?.onChangeText}
+        editable={true}
         // theme={{colors: {primary: 'gray', underlineColor: 'transparent'}}}
       />
     </View>
