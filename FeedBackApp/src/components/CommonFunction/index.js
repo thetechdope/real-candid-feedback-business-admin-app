@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const baseUrl = 'http://34.212.54.70:3000/api';
 
 const commonFunction = async ({ data, endpoint, method }) => {
-  
+
   console.log('prosjkdffks', data, endpoint, method);
   // const res = {
   //   businessName: 'Arun',
@@ -38,8 +38,8 @@ const commonFunction = async ({ data, endpoint, method }) => {
   } else if (method === 'GET') {
     console.log(endpoint)
     const response = await axios.get(`${baseUrl}${endpoint}`, config);
-    console.log(response.data);
-    await AsyncStorage.setItem('token', response.data.token);
+    console.log("resp=======", response.data);
+    // await AsyncStorage.setItem('token', response.data.token);
     //   await AsyncStorage.setItem('userId', response.data._id);
     return response;
   } else if (method === 'DELETE') {
