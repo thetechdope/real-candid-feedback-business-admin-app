@@ -43,7 +43,7 @@ const Signup = (props) => {
         // console.log('response :>> ', JSON.stringify(response.data));
         if (response.data) {
 
-          props.navigation.navigate('Otp',{businessEmail:email});
+          props.navigation.navigate('Otp',{businessEmail:email,screen:"signup"});
           // setLoading(false);
         }
       // } catch (error) {

@@ -36,6 +36,7 @@ const commonFunction = async ({ data, endpoint, method }) => {
 
     return response;
   } else if (method === 'GET') {
+    console.log(endpoint)
     const response = await axios.get(`${baseUrl}${endpoint}`, config);
     console.log(response.data);
     await AsyncStorage.setItem('token', response.data.token);

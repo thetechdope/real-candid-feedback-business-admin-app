@@ -17,6 +17,35 @@ import { ImagePath } from '../../assets/images';
 import { Route } from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const ResetPassword = props => {
+
+  const [newPassword, setNewPassword]=useState("");
+  const [confirmPassword, setConfirmPassword]=useState("");
+  const [email, setEmail]=useState("");
+
+  const navigation =useNavigation();
+
+  useEffect(()=>{
+    setEmail(props.route?.params?.businessEmail);
+  },[])
+  const onChange = async() => {
+    
+    let body = {
+      businessEmail: email,
+      newPassword:newPassword,
+      confirmPassword:confirmPassword,
+    };
+    await axios.patch('http://34.212.54.70:3000/api/businesses/change-password', body)
+    .then(res => {
+      console.log('otpres777777777===>', res);
+      if (res?.status) {
+        alert('Password Reset Successfully done !');
+        navigation.navigate(Route.Login);
+      } else {
+        alert('Failed to Reset Password !');
+
+      }}).catch(err => {console.log('err===>', err);
+    });
+  }
   return (
     <CustomHeader>
       <KeyboardAvoidingView>

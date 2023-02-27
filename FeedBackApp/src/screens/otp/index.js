@@ -1,41 +1,69 @@
-import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
+import { View, Text, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles';
-import {CustomButtonComponent, CustomHeader} from '../../components';
-import {ImagePath} from '../../assets/images';
-import {Route} from '../../navigation/route';
+import { CustomButtonComponent, CustomHeader } from '../../components';
+import { useNavigation } from '@react-navigation/native'
+import { ImagePath } from '../../assets/images';
+import { Route } from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OTPTextView from 'react-native-otp-textinput';
+import axios from 'axios';
+const Otp = ({route:{params}},props) => {
+  console.log('props====><',params)
+  const screenName=params?.screen
+  console.log("screenName",screenName)
 
-const Otp = props => {
+  
+  const [email,setEmail]=useState()
+  const [otp,setOtp]=useState()
 
-  const otpCredential = {
-    businessEmail: businessEmail,
-    // otp: otp,
-   
-  };
+  const navigation= useNavigation();
 
-  const SubmitOtp = async() =>{
+  // const otpCredential = {
+  //   businessEmail: businessEmail,
+  //   // otp: otp,
 
-    const response = await commonFunction({
-      data: otpCredential,
-      endpoint:'/businesses/verify-email' ,
-      method: 'PATCH',
-    });
-    // console.log('response :>> ', JSON.stringify(response.data));
-    if (response.data) {
+  // };
 
-      props.navigation.navigate('Login');
-      // setLoading(false);
+  useEffect(()=>{
+    setEmail(params?.businessEmail)
+  },[email])
+
+  const SubmitOtp = () => {
+    let body = {
+      businessEmail: email,
+      otp: otp
     }
 
+    axios.patch("http://34.212.54.70:3000/api/businesses/verify-email", body)
+      .then((res) => {
+        if (res.data.status == true) {
+          // alert('OTP Verified Successfully')
+          {
+            screenName=='forgot'?
+          navigation.navigate(Route.ResetPassword)
+          :
+          navigation.navigate(Route.Login)
+
+
+          }
+          // navigation.navigate(Route.Login)
+
+        } else {
+          alert('Incorrect Password')
+        }
+
+      }).catch(err => {
+        console.log('err===>', err)
+      })
   }
   return (
     <CustomHeader>
       <View style={styles.mainView}>
         <TouchableOpacity
           onPress={() => {
-            props.navigation.goBack();
+            navigation.goBack();
           }}>
           <Icon name="arrow-left" size={25} color="#000" />
         </TouchableOpacity>
@@ -50,7 +78,9 @@ const Otp = props => {
             Enter the OTP sent to your email.
           </Text>
         </View>
-        <OTPTextView/>
+        <OTPTextView 
+        handleTextChange={txt=>setOtp(txt)}
+        />
         {/* <CustomTextInput keyboardType={'email-address'} label={'Email'} /> */}
         <View style={styles.descriptionView}>
           <Text style={styles.remember}>
@@ -63,8 +93,8 @@ const Otp = props => {
             </TouchableOpacity>
           </Text>
         </View>
-        <CustomButtonComponent label={'SUBMIT'} 
-         onPress={() => SubmitOtp()}/>
+        <CustomButtonComponent label={'SUBMIT'}
+          onPress={() => SubmitOtp()} />
       </View>
     </CustomHeader>
   );
