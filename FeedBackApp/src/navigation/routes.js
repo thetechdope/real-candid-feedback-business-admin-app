@@ -93,6 +93,11 @@ function MyStack(props) {
         component={screens.Notifications}
         options={{headerShown: false}}
       />
+        <Stack.Screen
+        name={Route.ResetPassword}
+        component={screens.ResetPassword}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name={Route.ChangePassword}
         component={screens.ChangePassword}

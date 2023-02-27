@@ -12,6 +12,7 @@ import axios from 'axios';
 const Otp = ({route:{params}},props) => {
   console.log('props====><',params)
   const screenName=params?.screen
+  const emailID=params?.businessEmail
   console.log("screenName",screenName)
 
   
@@ -20,43 +21,28 @@ const Otp = ({route:{params}},props) => {
 
   const navigation= useNavigation();
 
-  // const otpCredential = {
-  //   businessEmail: businessEmail,
-  //   // otp: otp,
-
-  // };
-
-  useEffect(()=>{
-    setEmail(params?.businessEmail)
-  },[email])
-
+  console.log("email-----",props?.route?.params?.businessEmail)
   const SubmitOtp = () => {
     let body = {
-      businessEmail: email,
+      businessEmail: emailID,
       otp: otp
     }
-
+console.log('body;;;;;',body)
     axios.patch("http://34.212.54.70:3000/api/businesses/verify-email", body)
       .then((res) => {
-        if (res.data.status == true) {
-          // alert('OTP Verified Successfully')
-          {
-            screenName=='forgot'?
-          navigation.navigate(Route.ResetPassword)
-          :
-          navigation.navigate(Route.Login)
-
-
+        console.log("resssss",res?.data?.status)
+          alert('OTP Verified Successfully');
+         
+          if(res?.data?.status ==true){
+            navigation.navigate(Route.ResetPassword,{businessEmail:emailID});
+          }else{
+            navigation.navigate(Route.Login);
           }
-          // navigation.navigate(Route.Login)
-
-        } else {
-          alert('Incorrect Password')
-        }
-
-      }).catch(err => {
-        console.log('err===>', err)
-      })
+          }
+      )
+        .catch(err=>{
+          console.log('err==========================>',err)
+        })
   }
   return (
     <CustomHeader>
