@@ -111,7 +111,7 @@ const Setting = props => {
             </Text>
             <View style={{flexDirection: 'row'}}>
               <Image source={ImagePath.LOCATION} />
-              <Text style={{color: 'grey'}}>Gurugram, India</Text>
+              <Text style={{color: 'grey'}}>Jakarta, Indonesia</Text>
             </View>
           </View>
           <TouchableOpacity
