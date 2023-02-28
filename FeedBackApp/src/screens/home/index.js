@@ -21,23 +21,27 @@ import {COLOR} from '../../utils/color/color';
 import commonFunction from '../../components/CommonFunction';
 const Home = props => {
   const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
+  const [zero, setZero] = useState(43);
+  const [one, setOne] = useState(0);
+  const [two, setTwo] = useState(21);
+  console.log('zerooooo frer', zero, one, two);
   const data = [
     {
-      value: 0,
+      value: two,
       frontColor: '#66D464',
       topLabelComponent: () => (
         <Image source={ImagePath.GREENEMOJI} style={{marginBottom: 10}} />
       ),
     },
     {
-      value: 0,
+      value: one,
       frontColor: '#E9D102',
       topLabelComponent: () => (
         <Image source={ImagePath.YELLOWEMOJI} style={{marginBottom: 10}} />
       ),
     },
     {
-      value: 0,
+      value: zero,
       frontColor: '#FA4E4E',
       topLabelComponent: () => (
         <Image source={ImagePath.REDEMOJI} style={{marginBottom: 10}} />
@@ -45,18 +49,48 @@ const Home = props => {
     },
   ];
   async function Feedbacks(params) {
+    let countOne = 0;
+    let countTwo = 0;
+    let countZero = 0;
+
     try {
       const response = await commonFunction({
         data: '',
-        endpoint: 'feedbacks/loggedin-business',
+        endpoint: '/feedbacks/loggedin-business',
         method: 'GET',
-      });
-      let data = [];
-      data.push(response);
-      setFeedbacksByUsers(response);
-      console.log('response from Home', FeedbacksByUsers);
-      FeedbacksByUsers.map(item => {
-        console.log('feedbacks', item);
+      }).then(res => {
+        let data = [];
+        data.push(res.data);
+        setFeedbacksByUsers(res.data);
+        console.log('response from Home', FeedbacksByUsers);
+        FeedbacksByUsers.map(item => {
+          // console.log('response for chart', item.rating);
+
+          // {
+          //   item?.rating === 1
+          //     ? setOne(item.rating)
+          //     : item?.rating === 2
+          //     ? setTwo(item.rating)
+          //     : item?.rating === 0
+          //     ? setZero(item.rating)
+          //     : null;
+          // }
+
+          if (item?.rating === 1) {
+            console.log('number one', item.rating);
+            countOne += 1;
+
+            setOne(countOne);
+          } else if (item?.rating === 2) {
+            console.log('number two', item.rating);
+            countTwo += 1;
+            setTwo(countTwo);
+          } else {
+            console.log('number zero', item.rating);
+            countZero += 1;
+            setZero(countZero);
+          }
+        });
       });
     } catch (error) {
       console.log(error.response.data);
@@ -86,7 +120,13 @@ const Home = props => {
             style={{fontSize: 16, lineHeight: 19, fontFamily: ROBOTO_MEDIUM}}>
             Monthly Average Rating
           </Text>
-          <Image source={ImagePath.BAD} />
+          {zero > one && zero > two ? (
+            <Image source={ImagePath.BAD} />
+          ) : one > zero && one > two ? (
+            <Image source={ImagePath.NORMAL} />
+          ) : (
+            <Image source={ImagePath.GOOD} />
+          )}
         </View>
         <ScrollView>
           <View
@@ -104,6 +144,9 @@ const Home = props => {
                 height={height * 0.12}
                 width={width * 0.6}
                 data={data}
+                // data={FeedbacksByUsers.map(item => {
+                //   return item.item.rating;
+                // })}
                 barWidth={20}
                 noOfSections={3}
                 disablePress
@@ -124,9 +167,9 @@ const Home = props => {
             <ScrollView horizontal={true} key={'flat'}>
               <CustomFlatList
                 data={FeedbacksByUsers}
-                onPress={() =>
-                  props.navigation.navigate(Route.profileFromFlatList)
-                }
+                onPress={item => {
+                  props.navigation.navigate(Route.profileFromFlatList, {item});
+                }}
               />
             </ScrollView>
           </View>

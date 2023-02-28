@@ -19,6 +19,7 @@ const EditProfile = props => {
   const [address, setAddress] = useState();
   const [loading, setLoading] = useState();
   const [previousPhoto, setPreviousPhoto] = useState('');
+  const [userData, setUserData] = useState('');
   const responseData = item => {
     // console.log('item', item);
     setBusinessName(item?.businessName);
@@ -27,10 +28,7 @@ const EditProfile = props => {
     setAddress(item?.businessAddress);
     setPreviousPhoto(item?.businessImage);
   };
-  useEffect(() => {
-    // getUser();
-    _retrieveData();
-  }, []);
+
   async function getUser(params) {
     await AsyncStorage.getItem('user').then(res => {
       setData(res), console.log('response======', JSON.parse(res));
@@ -39,18 +37,10 @@ const EditProfile = props => {
     }); //  let user1 = JSON.parse(userData)
   }
   const _retrieveData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('user');
-      if (value !== null) {
-        // Our data is fetched successfully
-        // console.log(JSON.parse(value));
-        setData(value), console.log('response======', JSON.parse(value));
-        let d1 = JSON.parse(value);
-        responseData(d1);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
+    await AsyncStorage.getItem('user').then(res => {
+      setUserData(JSON.parse(res));
+      responseData(JSON.parse(res));
+    });
   };
 
   const editCredentials = {
@@ -69,39 +59,24 @@ const EditProfile = props => {
         data: editCredentials,
         endpoint: '/businesses/update-business',
         method: 'PATCH',
-      }).then(async () => {
-        _storeData(response);
+      });
+      // _storeData(response);
+      console.log('resUSer====<><', response.data);
+      // console.log('email', response.data.businessEmail);
+      if (response.data) {
+        console.log('resUSer====<><', response.data);
+        await AsyncStorage.setItem('user', JSON.stringify(response.data));
+        responseData(JSON.parse(response.data));
         props.navigation.navigate('Setting');
         setLoading(false);
-      });
+      }
     } catch (error) {
       setLoading(false);
       console.log('error :>> ', error);
     }
     setLoading(false);
   };
-  const _storeData = async data => {
-    try {
-      await AsyncStorage.setItem('user', data);
-    } catch (error) {
-      // Error saving data
-      console.log(error);
-    }
-  };
-  const _retrieveDataAfterEdit = async () => {
-    try {
-      const value = await AsyncStorage.getItem('user');
-      if (value !== null) {
-        // Our data is fetched successfully
-        // console.log(JSON.parse(value));
-        setData(value), console.log('response======', JSON.parse(value));
-        let d1 = JSON.parse(value);
-        responseData(d1);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  };
+
   const openCamera = async () => {
     const options = {
       mediaType: 'photo',
@@ -117,6 +92,10 @@ const EditProfile = props => {
   //     responseData(d1);
   //   }); //  let user1 = JSON.parse(userData)
   // }, []);
+  useEffect(() => {
+    // getUser();
+    _retrieveData();
+  }, []);
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <ScrollView>

@@ -22,12 +22,15 @@ const Feedbacks = props => {
     {label: 'Registered', value: '1', image: ImagePath.REGISTERED},
     {label: 'Anonymous', value: '2', image: ImagePath.ANONYMOUS},
   ];
+
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [rating, setrating] = useState(0);
   const [name, setname] = useState('');
   const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
+  const [FilterFeedbacksByUsers, setFilterFeedbacksByUsers] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  console.log(value);
   useEffect(() => {
     Feedbacks();
   }, []);
@@ -42,18 +45,32 @@ const Feedbacks = props => {
     try {
       const response = await commonFunction({
         data: '',
-        endpoint: 'feedbacks/loggedin-business',
+        endpoint: '/feedbacks/loggedin-business',
         method: 'GET',
+      }).then(res => {
+        let data = [];
+        data.push(res.data);
+        setFeedbacksByUsers(res.data);
+        {
+          FeedbacksByUsers?.map(item => {
+            {
+              item.isAnonymous === true && value === 2
+                ? setFilterFeedbacksByUsers(item)
+                : setFilterFeedbacksByUsers(item);
+            }
+            // setAnonymous(item);
+            // console.log('item user type', item.isAnonymous);
+          });
+        }
+        console.log('response from feedback', FeedbacksByUsers);
       });
-      let data = [];
-      data.push(response);
-      setFeedbacksByUsers(response);
-      console.log('response from feedback', FeedbacksByUsers);
     } catch (error) {
       console.log(error.response.data);
     }
   }
-
+  function getClick(user) {
+    console.log(user);
+  }
   return (
     <CustomHeader>
       <View
@@ -155,8 +172,10 @@ const Feedbacks = props => {
       </View>
       <View style={{height: height * 0.9}}>
         <CustomFlatList
-          data={FeedbacksByUsers}
-          onPress={() => props.navigation.navigate(Route.profileFromFlatList)}
+          data={FilterFeedbacksByUsers}
+          onPress={item => {
+            props.navigation.navigate(Route.profileFromFlatList, {item});
+          }}
         />
       </View>
     </CustomHeader>

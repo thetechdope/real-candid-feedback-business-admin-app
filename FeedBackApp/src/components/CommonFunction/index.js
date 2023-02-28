@@ -46,13 +46,6 @@ const commonFunction = async ({data, endpoint, method}) => {
     // await AsyncStorage.setItem('token', response.data.token);
     //   await AsyncStorage.setItem('userId', response.data._id);
     return response;
-  } else if (method === 'PATCH') {
-    console.log(endpoint);
-    const response = await axios.patch(`${baseUrl}${endpoint}`, config);
-    console.log('resp====111111111===', response.data);
-    // await AsyncStorage.setItem('token', response.data.token);
-    //   await AsyncStorage.setItem('userId', response.data._id);
-    return response;
   } else if (method === 'DELETE') {
     const response = await axios.get(`${baseUrl}${endpoint}`);
     console.log(response.data);

@@ -55,7 +55,8 @@ const CustomFlatList = props => {
       key: 6,
       emoji: 1,
     },
-  ]; // console.log(props);
+  ];
+  console.log('mjsdhjsgdhsjhadsa', props);
   return (
     <View style={styles.flatListContainer}>
       <FlatList
@@ -72,7 +73,7 @@ const CustomFlatList = props => {
         renderItem={item => {
           // console.log(item?.item);
           return (
-            <TouchableWithoutFeedback onPress={props.onPress}>
+            <TouchableWithoutFeedback onPress={() => props.onPress(item)}>
               <View
                 key={item.item.key}
                 style={{

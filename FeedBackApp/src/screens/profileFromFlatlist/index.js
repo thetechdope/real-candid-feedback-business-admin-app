@@ -13,20 +13,12 @@ import {COLOR} from '../../utils/color/color';
 import LinearGradient from 'react-native-linear-gradient';
 
 const ProfileFromFlatList = props => {
-  const data = [
-    {label: 'Registered', value: '1', image: ImagePath.REGISTERED},
-    {label: 'Anonymous', value: '2', image: ImagePath.ANONYMOUS},
-  ];
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [data, setData] = useState(props.route.params.item.item);
+  //  const {props.route.params}
 
-  const renderLabel = () => {
-    if (value || isFocus) {
-      return <Text style={[styles.label, isFocus && {color: 'blue'}]}></Text>;
-    }
-    return null;
-  };
-
+  console.log('jksdfjdsfdhf', data);
   return (
     <CustomHeader>
       <View
@@ -76,7 +68,7 @@ const ProfileFromFlatList = props => {
           alignItems: 'center',
         }}>
         <Text style={{fontFamily: ROBOTO_MEDIUM, fontSize: 20, lineHeight: 24}}>
-          Name
+          {data?.customerName}
         </Text>
       </View>
       <View
@@ -134,7 +126,13 @@ const ProfileFromFlatList = props => {
                 width: width * 0.4,
                 // backgroundColor: 'red',
               }}>
-              <Image source={ImagePath.GREENBIG} />
+              {data.rating === 0 ? (
+                <Image source={ImagePath.REDEMOJI} />
+              ) : data.rating === 1 ? (
+                <Image source={ImagePath.YELLOWEMOJI} />
+              ) : (
+                <Image source={ImagePath.GREENBIG} />
+              )}
             </View>
           </View>
         </LinearGradient>
@@ -147,26 +145,29 @@ const ProfileFromFlatList = props => {
           width: width * 0.95,
           alignSelf: 'center',
         }}>
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            height: height * 0.1,
-            // backgroundColor: 'red',
-          }}>
-          <Icon name="phone" color={'#7E50EE'} size={32.5} />
-          <Text
+        {data.customerphone ? (
+          <View
             style={{
-              color: '#797979',
-              fontFamily: ROBOTO_REGULAR,
-              fontSize: 14,
-              lineHeight: 17,
-              marginLeft: 20,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              height: height * 0.1,
+              // backgroundColor: 'red',
             }}>
-            +1 212-933-8373
-          </Text>
-        </View>
+            <Icon name="phone" color={'#7E50EE'} size={32.5} />
+            <Text
+              style={{
+                color: '#797979',
+                fontFamily: ROBOTO_REGULAR,
+                fontSize: 14,
+                lineHeight: 17,
+                marginLeft: 20,
+              }}>
+              +1 212-933-8373
+            </Text>
+          </View>
+        ) : null}
+
         <View
           style={{
             display: 'flex',
@@ -184,7 +185,7 @@ const ProfileFromFlatList = props => {
               lineHeight: 17,
               marginLeft: 20,
             }}>
-            Jackrowell@gmail.com
+            {data?.customerEmail}
           </Text>
         </View>
       </View>
