@@ -6,48 +6,49 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
-import React ,{useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './styles';
 import {
   CustomButtonComponent,
   CustomHeader,
   CustomTextInput,
 } from '../../components';
-import { ImagePath } from '../../assets/images';
-import { Route } from '../../navigation/route';
+import {ImagePath} from '../../assets/images';
+import {Route} from '../../navigation/route';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 const ResetPassword = props => {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  const [newPassword, setNewPassword]=useState("");
-  const [confirmPassword, setConfirmPassword]=useState("");
-  const [email, setEmail]=useState("");
+  const navigation = useNavigation();
 
-  const navigation =useNavigation();
-
-  useEffect(()=>{
+  useEffect(() => {
     setEmail(props.route?.params?.businessEmail);
-  },[])
-  const onReset = async() => {
-    
+  }, []);
+  const onReset = async () => {
     let body = {
       businessEmail: email,
-      newPassword:newPassword,
-      confirmPassword:confirmPassword,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
     };
-    await axios.patch('http://34.212.54.70:3000/api/businesses/reset-password', body)
-    .then(res => {
-      console.log('otp===>', res);
-      if (res?.status) {
-        alert('Password Reset Successfully done !');
-        navigation.navigate(Route.Login);
-      } else {
-        alert('Failed to Reset Password !');
-
-      }}).catch(err => {console.log('err===>', err);
-    });
-  }
+    await axios
+      .patch('http://34.212.54.70:3000/api/businesses/reset-password', body)
+      .then(res => {
+        console.log('otp===>', res);
+        if (res?.status) {
+          alert('Password Reset Successfully done !');
+          navigation.navigate(Route.Login);
+        } else {
+          alert('Failed to Reset Password !');
+        }
+      })
+      .catch(err => {
+        console.log('err===>', err);
+      });
+  };
   return (
     <CustomHeader>
       <KeyboardAvoidingView>
@@ -63,24 +64,28 @@ const ResetPassword = props => {
           </View>
           <View style={styles.descriptionView}>
             <Text style={styles.description}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
             </Text>
           </View>
 
-          <CustomTextInput keyboardType={'default'} label={'New Password'} 
-          onChangeText={txt => setNewPassword(txt)}
-          
+          <CustomTextInput
+            keyboardType={'default'}
+            label={'New Password'}
+            onChangeText={txt => setNewPassword(txt)}
           />
-          <CustomTextInput keyboardType={'default'} label={'Confirm Password'} 
-          onChangeText={txt => setConfirmPassword(txt)}
-          
+          <CustomTextInput
+            keyboardType={'default'}
+            label={'Confirm Password'}
+            onChangeText={txt => setConfirmPassword(txt)}
           />
-          <CustomButtonComponent label={'RESET PASSWORD'}
+          <CustomButtonComponent
+            label={'RESET PASSWORD'}
             // onPress={() => {
             //   props.navigation.navigate('Login')
             // }}
-            onPress={()=>{
-              onReset()
+            onPress={() => {
+              onReset();
             }}
           />
         </View>

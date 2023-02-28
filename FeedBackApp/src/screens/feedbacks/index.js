@@ -44,12 +44,11 @@ const Feedbacks = props => {
         data: '',
         endpoint: 'feedbacks/loggedin-business',
         method: 'GET',
-      }).then(res => {
-        let data = [];
-        data.push(res.data);
-        setFeedbacksByUsers(res.data);
-        console.log('response from feedback', FeedbacksByUsers);
       });
+      let data = [];
+      data.push(response);
+      setFeedbacksByUsers(response);
+      console.log('response from feedback', FeedbacksByUsers);
     } catch (error) {
       console.log(error.response.data);
     }

@@ -42,8 +42,11 @@ const ForgotPassword = props => {
     });
     console.log('response===>', response);
     if (response.data) {
-      console.log(email,"email----------")
-      props.navigation.navigate(Route.Otp, {screen: 'forgotPassword',businessEmail:email});
+      console.log(email, 'email----------');
+      props.navigation.navigate(Route.Otp, {
+        screen: 'forgotPassword',
+        businessEmail: email,
+      });
       // setLoading(false);
     }
     // } catch (error) {

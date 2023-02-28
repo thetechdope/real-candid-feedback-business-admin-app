@@ -23,21 +23,21 @@ const Home = props => {
   const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
   const data = [
     {
-      value: 20,
+      value: 0,
       frontColor: '#66D464',
       topLabelComponent: () => (
         <Image source={ImagePath.GREENEMOJI} style={{marginBottom: 10}} />
       ),
     },
     {
-      value: 80,
+      value: 0,
       frontColor: '#E9D102',
       topLabelComponent: () => (
         <Image source={ImagePath.YELLOWEMOJI} style={{marginBottom: 10}} />
       ),
     },
     {
-      value: 90,
+      value: 0,
       frontColor: '#FA4E4E',
       topLabelComponent: () => (
         <Image source={ImagePath.REDEMOJI} style={{marginBottom: 10}} />
@@ -50,11 +50,13 @@ const Home = props => {
         data: '',
         endpoint: 'feedbacks/loggedin-business',
         method: 'GET',
-      }).then(res => {
-        let data = [];
-        data.push(res.data);
-        setFeedbacksByUsers(res.data);
-        console.log('response from Home', FeedbacksByUsers);
+      });
+      let data = [];
+      data.push(response);
+      setFeedbacksByUsers(response);
+      console.log('response from Home', FeedbacksByUsers);
+      FeedbacksByUsers.map(item => {
+        console.log('feedbacks', item);
       });
     } catch (error) {
       console.log(error.response.data);

@@ -52,6 +52,7 @@ const EditProfile = props => {
       // Error retrieving data
     }
   };
+
   const editCredentials = {
     businessName: businessName,
     businessAddress: address,
@@ -84,6 +85,21 @@ const EditProfile = props => {
       await AsyncStorage.setItem('user', data);
     } catch (error) {
       // Error saving data
+      console.log(error);
+    }
+  };
+  const _retrieveDataAfterEdit = async () => {
+    try {
+      const value = await AsyncStorage.getItem('user');
+      if (value !== null) {
+        // Our data is fetched successfully
+        // console.log(JSON.parse(value));
+        setData(value), console.log('response======', JSON.parse(value));
+        let d1 = JSON.parse(value);
+        responseData(d1);
+      }
+    } catch (error) {
+      // Error retrieving data
     }
   };
   const openCamera = async () => {
