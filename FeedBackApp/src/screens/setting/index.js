@@ -49,7 +49,7 @@ const Setting = props => {
         if (Platform.OS === 'android') {
           await AsyncStorage.clear();
           console.log('async items cleared android');
-          props.navigation.navigate('Login');
+          props.navigation.replace('Login');
         }
         if (Platform.OS === 'ios') {
           await AsyncStorage.multiRemove(asyncStorageKeys);
@@ -111,7 +111,7 @@ const Setting = props => {
             </Text>
             <View style={{flexDirection: 'row'}}>
               <Image source={ImagePath.LOCATION} />
-              <Text style={{color: 'grey'}}>Jakarta, Indonesia</Text>
+              <Text style={{color: 'grey'}}>Gurugram, India</Text>
             </View>
           </View>
           <TouchableOpacity
