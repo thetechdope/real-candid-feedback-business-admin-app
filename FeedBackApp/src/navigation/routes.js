@@ -27,7 +27,7 @@ function HomeRoute() {
 function FeedbackRoute() {
   return (
     <Stack.Navigator>
-      <Stack.Screencd 
+      <Stack.Screen
         name={Route.Dashboard}
         component={screens.Feedbacks}
         options={{headerShown: false}}

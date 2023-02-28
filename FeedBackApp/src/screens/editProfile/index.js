@@ -71,11 +71,13 @@ const EditProfile = props => {
       }).then(async () => {
         _storeData(response);
         props.navigation.navigate('Setting');
+        setLoading(false);
       });
     } catch (error) {
       setLoading(false);
       console.log('error :>> ', error);
     }
+    setLoading(false);
   };
   const _storeData = async data => {
     try {
