@@ -2,8 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const baseUrl = 'http://34.212.54.70:3000/api';
 
-const commonFunction = async ({ data, endpoint, method }) => {
-
+const commonFunction = async ({data, endpoint, method}) => {
   console.log('prosjkdffks', data, endpoint, method);
   // const res = {
   //   businessName: 'Arun',
@@ -22,48 +21,52 @@ const commonFunction = async ({ data, endpoint, method }) => {
 
   // setToken(result)
 
-  console.log("token", token)
+  // console.log('token', token);
   const config = {
     headers: {
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const patchConfig = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
     },
   };
   if (method === 'POST') {
-    const response = await axios.post(`${baseUrl}${endpoint}`, data);
+    const response = await axios.post(`${baseUrl}${endpoint}`, data, config);
 
     console.log('ufcwjcvhcvswcv', response.data);
 
     return response;
   } else if (method === 'GET') {
-    console.log(endpoint)
+    console.log(endpoint);
     const response = await axios.get(`${baseUrl}${endpoint}`, config);
-    console.log("resp=======", response.data);
+    console.log('resp=======', response.data);
     // await AsyncStorage.setItem('token', response.data.token);
     //   await AsyncStorage.setItem('userId', response.data._id);
     return response;
-  }  else if (method === 'PATCH') {
-    console.log(endpoint)
+  } else if (method === 'PATCH') {
+    console.log(endpoint);
     const response = await axios.patch(`${baseUrl}${endpoint}`, config);
-    console.log("resp====111111111===", response.data);
+    console.log('resp====111111111===', response.data);
     // await AsyncStorage.setItem('token', response.data.token);
     //   await AsyncStorage.setItem('userId', response.data._id);
     return response;
-  } 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  else if (method === 'DELETE') {
+  } else if (method === 'DELETE') {
     const response = await axios.get(`${baseUrl}${endpoint}`, config);
     console.log(response.data);
 
+    //   await AsyncStorage.setItem('userId', response.data._id);
+    return response;
+  } else if (method === 'PATCH') {
+    const response = await axios.patch(
+      `${baseUrl}${endpoint}`,
+      data,
+      patchConfig,
+    );
+    console.log('response after patch', response.data);
+    // await AsyncStorage.setItem('user', JSON.stringify(response.data));
     //   await AsyncStorage.setItem('userId', response.data._id);
     return response;
   }
