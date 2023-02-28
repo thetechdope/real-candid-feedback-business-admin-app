@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import {TextInput} from 'react-native-paper';
@@ -12,11 +12,15 @@ import {COLOR} from '../../utils/color/color';
 const CustomButtonComponent = props => {
   return (
     <TouchableOpacity style={styles.touchableView} onPress={props.onPress}>
-      <LinearGradient
-        colors={[COLOR.LINEARGRADIENT1, COLOR.LINEARGRADIENT2]}
-        style={styles.linearGradient}>
-        <Text style={styles.buttonText}>{props?.label}</Text>
-      </LinearGradient>
+      {props.loading ? (
+        <ActivityIndicator size={40} color={COLOR.COMMONCOLOR} />
+      ) : (
+        <LinearGradient
+          colors={[COLOR.LINEARGRADIENT1, COLOR.LINEARGRADIENT2]}
+          style={styles.linearGradient}>
+          <Text style={styles.buttonText}>{props?.label}</Text>
+        </LinearGradient>
+      )}
     </TouchableOpacity>
   );
 };

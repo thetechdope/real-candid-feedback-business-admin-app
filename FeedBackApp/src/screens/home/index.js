@@ -8,7 +8,7 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {CustomFlatList, CustomHeader} from '../../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,31 +18,53 @@ import {BarChart, LineChart, PieChart} from 'react-native-gifted-charts';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {Route} from '../../navigation/route';
 import {COLOR} from '../../utils/color/color';
-
+import commonFunction from '../../components/CommonFunction';
 const Home = props => {
+  const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
   const data = [
     {
-      value: 20,
+      value: 0,
       frontColor: '#66D464',
       topLabelComponent: () => (
         <Image source={ImagePath.GREENEMOJI} style={{marginBottom: 10}} />
       ),
     },
     {
-      value: 80,
+      value: 0,
       frontColor: '#E9D102',
       topLabelComponent: () => (
         <Image source={ImagePath.YELLOWEMOJI} style={{marginBottom: 10}} />
       ),
     },
     {
-      value: 90,
+      value: 0,
       frontColor: '#FA4E4E',
       topLabelComponent: () => (
         <Image source={ImagePath.REDEMOJI} style={{marginBottom: 10}} />
       ),
     },
   ];
+  async function Feedbacks(params) {
+    try {
+      const response = await commonFunction({
+        data: '',
+        endpoint: 'feedbacks/loggedin-business',
+        method: 'GET',
+      });
+      let data = [];
+      data.push(response);
+      setFeedbacksByUsers(response);
+      console.log('response from Home', FeedbacksByUsers);
+      FeedbacksByUsers.map(item => {
+        console.log('feedbacks', item);
+      });
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
+  useEffect(() => {
+    Feedbacks();
+  }, []);
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <StatusBar
@@ -101,6 +123,7 @@ const Home = props => {
           <View>
             <ScrollView horizontal={true} key={'flat'}>
               <CustomFlatList
+                data={FeedbacksByUsers}
                 onPress={() =>
                   props.navigation.navigate(Route.profileFromFlatList)
                 }

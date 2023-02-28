@@ -43,11 +43,13 @@ const CustomBottomTab = ({state, descriptors, navigation}) => {
 
         return (
           <View
+            key={index.toString()}
             style={{
               width: width * 0.32,
-              height: height * 0.08,
-            }}
-            key={index}>
+              height: height * 0.09,
+              justifyContent: 'center',
+              alignContent: 'center',
+            }}>
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityState={isFocused ? {selected: true} : {}}

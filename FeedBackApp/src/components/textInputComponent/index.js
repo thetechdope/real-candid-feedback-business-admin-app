@@ -7,13 +7,19 @@ import styles from './styles';
 const CustomTextInput = props => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{props?.label}</Text>
+      <View style={styles.labelContainer}>
+        <Text style={styles.label}>{props?.label}</Text>
+      </View>
       <TextInput
         keyboardType={props?.keyboardType ? props.keyboardType : 'default'}
         style={styles.textInputStyle}
         secureTextEntry={props?.secureTextEntry}
+        value={props.value}
         label={props.label}
-        theme={{colors: {primary: 'gray', underlineColor: 'transparent'}}}
+        placeholder={props.placeholder}
+        onChangeText={props?.onChangeText}
+        editable={true}
+        // theme={{colors: {primary: 'gray', underlineColor: 'transparent'}}}
       />
     </View>
   );

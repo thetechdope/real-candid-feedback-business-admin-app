@@ -1,5 +1,12 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import styles from './styles';
 import {CustomFlatList, CustomHeader} from '../../components';
 import {height, width} from '../../utils/dimensions/dimensions';
@@ -8,6 +15,7 @@ import {ROBOTO_BOLD, ROBOTO_MEDIUM} from '../../assets/fonts';
 import {Dropdown} from 'react-native-element-dropdown';
 import {SelectCountry} from 'react-native-element-dropdown';
 import {ImagePath} from '../../assets/images';
+import commonFunction from '../../components/CommonFunction';
 import {Route} from '../../navigation/route';
 const Feedbacks = props => {
   const data = [
@@ -16,6 +24,13 @@ const Feedbacks = props => {
   ];
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
+  const [rating, setrating] = useState(0);
+  const [name, setname] = useState('');
+  const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+  useEffect(() => {
+    Feedbacks();
+  }, []);
 
   const renderLabel = () => {
     if (value || isFocus) {
@@ -23,6 +38,21 @@ const Feedbacks = props => {
     }
     return null;
   };
+  async function Feedbacks(params) {
+    try {
+      const response = await commonFunction({
+        data: '',
+        endpoint: 'feedbacks/loggedin-business',
+        method: 'GET',
+      });
+      let data = [];
+      data.push(response);
+      setFeedbacksByUsers(response);
+      console.log('response from feedback', FeedbacksByUsers);
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  }
 
   return (
     <CustomHeader>
@@ -98,7 +128,7 @@ const Feedbacks = props => {
                     name={'filter-variant'}
                     size={20}
                   />
-                  <Text>Filters</Text>
+                  <Text style={{color: 'black'}}>Filters</Text>
                 </View>
               ) : (
                 '...'
@@ -123,8 +153,12 @@ const Feedbacks = props => {
           />
         </View>
       </View>
-
-      <CustomFlatList />
+      <View style={{height: height * 0.9}}>
+        <CustomFlatList
+          data={FeedbacksByUsers}
+          onPress={() => props.navigation.navigate(Route.profileFromFlatList)}
+        />
+      </View>
     </CustomHeader>
   );
 };

@@ -6,9 +6,11 @@ import {
   Image,
   VirtualizedList,
   TouchableOpacity,
+  ActivityIndicator,
   TouchableWithoutFeedback,
+  RefreshControl,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './styles';
 import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR} from '../../assets/fonts';
 import {ImagePath} from '../../assets/images';
@@ -16,43 +18,57 @@ import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
 
 const CustomFlatList = props => {
+  const [refreshing, setRefreshing] = useState(false);
   const data = [
     {
       key: 1,
       name: 'Arun Kumar',
+      emoji: 0,
     },
     {
       key: 2,
       name: 'Arun Kumar',
+      emoji: 2,
     },
     {
       name: 'Arun Kumar',
       key: 3,
+      emoji: 1,
     },
     {
       name: 'Arun Kumar',
       key: 4,
+      emoji: 0,
     },
     {
       name: 'Arun Kumar',
       key: 5,
+      emoji: 2,
     },
     {
       name: 'Arun Kumar',
       key: 7,
+      emoji: 0,
     },
     {
       name: 'Arun Kumar',
       key: 6,
+      emoji: 1,
     },
   ]; // console.log(props);
   return (
     <View style={styles.flatListContainer}>
       <FlatList
         nestedScrollEnabled={true}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={<ActivityIndicator color={'black'} />}
+          />
+        }
         // style={{height: height * 0.3, width: '100%', backgroundColor: 'red'}}
-        keyExtractor={item => item.key}
-        data={data}
+        keyExtractor={(item, index) => index.toString()}
+        data={props.data}
         renderItem={item => {
           // console.log(item?.item);
           return (
@@ -69,7 +85,7 @@ const CustomFlatList = props => {
                   borderWidth: 1,
 
                   shadowOffset: {width: 2, height: 20},
-                  width: '90%',
+                  width: width * 0.9,
                   height: height * 0.13,
                   padding: 10,
                   // borderColor: '#E8E8E8',
@@ -94,9 +110,15 @@ const CustomFlatList = props => {
                       width: width * 0.56,
                       color: COLOR.TEXTBLACK,
                     }}>
-                    Name
+                    {item.item.customerName}
                   </Text>
-                  <Image source={ImagePath.REDEMOJI} />
+                  {item.item.rating === 0 ? (
+                    <Image source={ImagePath.REDEMOJI} />
+                  ) : item.item.rating === 1 ? (
+                    <Image source={ImagePath.YELLOWEMOJI} />
+                  ) : (
+                    <Image source={ImagePath.GREENEMOJI} />
+                  )}
                   <Text
                     style={{color: '#797979', fontSize: 13, lineHeight: 20}}>
                     1 day ago
@@ -123,7 +145,7 @@ const CustomFlatList = props => {
                         fontSize: 14,
                         fontFamily: ROBOTO_REGULAR,
                       }}>
-                      Lorem Ipsum is simply dummy text of the printing.
+                      {item.item.feedback}
                     </Text>
                   </View>
                 </View>

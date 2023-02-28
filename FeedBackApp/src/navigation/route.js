@@ -10,11 +10,10 @@ export const Route = {
   Notifications: 'Notifications',
 
   Setting: 'Setting',
-  Setting: 'Setting',
+
   EditProfile: 'EditProfile',
   ChangePassword: 'ChangePassword',
   ResetPassword: 'ResetPassword',
-
 
   Dashboard: 'Dashboard',
 };
