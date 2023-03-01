@@ -11,7 +11,7 @@ import {ImagePath} from '../../assets/images';
 import {Route} from '../../navigation/route';
 import {COLOR} from '../../utils/color/color';
 import LinearGradient from 'react-native-linear-gradient';
-
+import moment from 'moment';
 const ProfileFromFlatList = props => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
@@ -118,7 +118,9 @@ const ProfileFromFlatList = props => {
                   color: '#E6DCFF',
                   fontFamily: ROBOTO_REGULAR,
                 }}>
-                12/12/2021
+                {moment(new Date(parseInt(data?.createdAt))).format(
+                  'DD/MM/YYYY',
+                )}
               </Text>
             </View>
             <View

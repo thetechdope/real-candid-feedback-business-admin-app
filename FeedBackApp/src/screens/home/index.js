@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-native/no-inline-styles */
 import {
   View,
   Text,
@@ -53,7 +55,6 @@ const Home = props => {
   ];
   useEffect(() => {
     Feedbacks();
-    BarGraph();
   }, []);
   async function Feedbacks() {
     await commonFunction({
@@ -64,14 +65,15 @@ const Home = props => {
       .then(res => {
         let data = [];
         data.push(res.data);
-        setFeedbacksByUsers(res.data);
+        setFeedbacksByUsers(...data);
+        // setFeedbacksByUsers(res.data);
         console.log('response from Home', FeedbacksByUsers);
       })
       .catch(error => {
         console.log('error in home screen', error);
       });
   }
-  function BarGraph() {
+  async function BarGraph() {
     FeedbacksByUsers.map(item => {
       if (item?.rating === 1) {
         // console.log('number one', item.rating);
@@ -89,6 +91,11 @@ const Home = props => {
       }
     });
   }
+  useEffect(() => {
+    BarGraph();
+
+    // return
+  }, [FeedbacksByUsers]);
 
   return (
     <SafeAreaView style={styles.SafeAreaView}>

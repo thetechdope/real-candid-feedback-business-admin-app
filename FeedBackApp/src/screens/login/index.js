@@ -25,30 +25,46 @@ const Login = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const LoginCredentials = {
-    businessEmail: email,
-    password: password,
-  };
+
+  // const LoginCredentials = {
+  //   businessEmail: email,
+  //   password: password,
+  // };
 
   const onLogin = async () => {
     setLoading(true);
     setTimeout(async () => {
       try {
-        const response = await commonFunction({
-          data: LoginCredentials,
-          endpoint: '/businesses/login',
-          method: 'POST',
-        });
-        console.log('response :>> ', response.data);
-        if (response.data._id) {
-          await AsyncStorage.setItem('token', response.data.token);
-          await AsyncStorage.setItem('user', JSON.stringify(response.data));
-          props.navigation.replace('BottomTab');
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.+com)+$/;
+        if (!email || !password) {
           setLoading(false);
+          alert('please enter details');
+        } else if (reg.test(email) === false) {
+          setLoading(false);
+          alert('Email is Not Correct');
+        } else {
+          setLoading(false);
+          let LoginCredentials = {businessEmail: email, password: password};
+
+          const response = await commonFunction({
+            data: LoginCredentials,
+            endpoint: '/businesses/login',
+            method: 'POST',
+          });
+          console.log('response :>> ', response.data);
+          if (response.data.isActive == true) {
+            await AsyncStorage.setItem('token', response.data.token);
+            await AsyncStorage.setItem('user', JSON.stringify(response.data));
+            props.navigation.replace('BottomTab');
+            setLoading(false);
+          } else {
+            alert('this bussinees is blocked by admin');
+            setLoading(false);
+          }
         }
       } catch (error) {
-        setLoading(false);
         Alert.alert(error.response.data.message);
+        setLoading(false);
         // console.log('username or password wrong', error);
         // setLoading(false);
       }

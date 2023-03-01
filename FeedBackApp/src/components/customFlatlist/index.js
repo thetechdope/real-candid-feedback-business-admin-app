@@ -98,8 +98,8 @@ const CustomFlatList = props => {
                   }}>
                   <View>
                     <Image
-                      source={ImagePath.ELLIPSE}
-                      style={{height: 50, width: 50}}
+                      source={ImagePath.DUMMY}
+                      style={{height: 50, width: 50, borderRadius: 100 / 2}}
                     />
                   </View>
                   <View style={{marginLeft: 20, width: 300}}>
