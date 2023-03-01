@@ -60,6 +60,7 @@ const ForgotPassword = props => {
       <KeyboardAwareScrollView>
         <View style={styles.mainView}>
           <TouchableOpacity
+            style={{marginTop: 50, margingLeft: 20}}
             onPress={() => {
               props.navigation.goBack();
             }}>

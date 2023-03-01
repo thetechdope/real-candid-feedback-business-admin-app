@@ -47,7 +47,7 @@ const commonFunction = async ({data, endpoint, method}) => {
     //   await AsyncStorage.setItem('userId', response.data._id);
     return response;
   } else if (method === 'DELETE') {
-    const response = await axios.get(`${baseUrl}${endpoint}`);
+    const response = await axios.delete(`${baseUrl}${endpoint}`);
     console.log(response.data);
 
     //   await AsyncStorage.setItem('userId', response.data._id);

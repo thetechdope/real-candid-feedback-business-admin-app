@@ -58,7 +58,10 @@ const ProfileFromFlatList = props => {
           // justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <Image source={ImagePath.ELLIPSE} />
+        <Image
+          source={ImagePath.DUMMY}
+          style={{height: 120, width: 120, borderRadius: 100 / 2}}
+        />
       </View>
       <View
         style={{

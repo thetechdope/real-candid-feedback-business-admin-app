@@ -37,7 +37,7 @@ const ResetPassword = props => {
     await axios
       .patch('http://34.212.54.70:3000/api/businesses/reset-password', body)
       .then(res => {
-        console.log('otp===>', res);
+        // console.log('otp===>', res);
         if (res?.status) {
           alert('Password Reset Successfully done !');
           navigation.navigate(Route.Login);

@@ -21,9 +21,12 @@ import {COLOR} from '../../utils/color/color';
 import commonFunction from '../../components/CommonFunction';
 const Home = props => {
   const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
-  const [zero, setZero] = useState(43);
+  const [zero, setZero] = useState(0);
   const [one, setOne] = useState(0);
-  const [two, setTwo] = useState(21);
+  const [two, setTwo] = useState(0);
+  let countOne = 0;
+  let countTwo = 0;
+  let countZero = 0;
   console.log('zerooooo frer', zero, one, two);
   const data = [
     {
@@ -48,57 +51,45 @@ const Home = props => {
       ),
     },
   ];
-  async function Feedbacks(params) {
-    let countOne = 0;
-    let countTwo = 0;
-    let countZero = 0;
-
-    try {
-      const response = await commonFunction({
-        data: '',
-        endpoint: '/feedbacks/loggedin-business',
-        method: 'GET',
-      }).then(res => {
+  useEffect(() => {
+    Feedbacks();
+    BarGraph();
+  }, []);
+  async function Feedbacks() {
+    await commonFunction({
+      data: '',
+      endpoint: '/feedbacks/loggedin-business',
+      method: 'GET',
+    })
+      .then(res => {
         let data = [];
         data.push(res.data);
         setFeedbacksByUsers(res.data);
         console.log('response from Home', FeedbacksByUsers);
-        FeedbacksByUsers.map(item => {
-          // console.log('response for chart', item.rating);
-
-          // {
-          //   item?.rating === 1
-          //     ? setOne(item.rating)
-          //     : item?.rating === 2
-          //     ? setTwo(item.rating)
-          //     : item?.rating === 0
-          //     ? setZero(item.rating)
-          //     : null;
-          // }
-
-          if (item?.rating === 1) {
-            console.log('number one', item.rating);
-            countOne += 1;
-
-            setOne(countOne);
-          } else if (item?.rating === 2) {
-            console.log('number two', item.rating);
-            countTwo += 1;
-            setTwo(countTwo);
-          } else {
-            console.log('number zero', item.rating);
-            countZero += 1;
-            setZero(countZero);
-          }
-        });
+      })
+      .catch(error => {
+        console.log('error in home screen', error);
       });
-    } catch (error) {
-      console.log(error.response.data);
-    }
   }
-  useEffect(() => {
-    Feedbacks();
-  }, []);
+  function BarGraph() {
+    FeedbacksByUsers.map(item => {
+      if (item?.rating === 1) {
+        // console.log('number one', item.rating);
+        countOne += 1;
+
+        setOne(countOne);
+      } else if (item?.rating === 2) {
+        // console.log('number two', item.rating);
+        countTwo += 1;
+        setTwo(countTwo);
+      } else {
+        // console.log('number zero', item.rating);
+        countZero += 1;
+        setZero(countZero);
+      }
+    });
+  }
+
   return (
     <SafeAreaView style={styles.SafeAreaView}>
       <StatusBar

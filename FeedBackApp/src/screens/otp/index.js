@@ -20,12 +20,13 @@ const Otp = ({route: {params}}, props) => {
 
   const navigation = useNavigation();
 
-  console.log('email-----', props?.route?.params?.businessEmail);
+  console.log('email-----', emailID);
   const SubmitOtp = () => {
     let body = {
       businessEmail: emailID,
       otp: otp,
     };
+
     console.log('body;;;;;', body);
     axios
       .patch('http://34.212.54.70:3000/api/businesses/verify-email', body)
@@ -35,12 +36,31 @@ const Otp = ({route: {params}}, props) => {
 
         if (screenName === 'signup') {
           navigation.navigate(Route.Login);
-        } else {
+        } else if (screenName === 'forgotPassword') {
+          // navigation.navigate(Route.Login);
           navigation.navigate(Route.ResetPassword, {businessEmail: emailID});
         }
       })
       .catch(err => {
-        console.log('err==========================>', err);
+        alert(err.response.data.message);
+      });
+  };
+  const ResendOtp = () => {
+    let body = {
+      businessEmail: 'Arunk4it@gmail.com',
+    };
+    const patchConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    axios
+      .get(`http://34.212.54.70:3000/api/businesses/resend-otp/${emailID}`)
+      .then(res => {
+        alert(res.data.message);
+      })
+      .catch(err => {
+        console.log('err==== sending otp================>', err);
       });
   };
   return (
@@ -56,7 +76,7 @@ const Otp = ({route: {params}}, props) => {
           <Image source={ImagePath.ILLUSTRATION} />
         </View>
         <View style={styles.forgotView}>
-          <Text style={styles.textStyle}>OTP Verfication</Text>
+          <Text style={styles.textStyle}>OTP Verification</Text>
         </View>
         <View style={styles.descriptionView}>
           <Text style={styles.description}>
@@ -70,7 +90,7 @@ const Otp = ({route: {params}}, props) => {
             Don't receive the OTP?
             <TouchableOpacity
               onPress={() => {
-                props.navigation.replace(Route.Login);
+                ResendOtp();
               }}>
               <Text style={styles.loginText}> RESEND OTP</Text>
             </TouchableOpacity>

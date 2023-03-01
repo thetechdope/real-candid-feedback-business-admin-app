@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import commonFunction from '../../components/CommonFunction';
+
 const EditProfile = props => {
   const [photo, setPhoto] = useState(null);
   const [data, setData] = useState();
@@ -22,10 +23,10 @@ const EditProfile = props => {
   const [userData, setUserData] = useState('');
   const responseData = item => {
     // console.log('item', item);
-    setBusinessName(item?.businessName);
-    setEmail(item?.businessEmail);
-    setPhone(item?.businessPhoneNumber);
-    setAddress(item?.businessAddress);
+    setBusinessName(item.businessName);
+    setEmail(item.businessEmail);
+    setPhone(item.businessPhoneNumber);
+    setAddress(item.businessAddress);
     setPreviousPhoto(item?.businessImage);
   };
 
@@ -38,6 +39,7 @@ const EditProfile = props => {
   }
   const _retrieveData = async () => {
     await AsyncStorage.getItem('user').then(res => {
+      // console.log(JSON.parse(res));
       setUserData(JSON.parse(res));
       responseData(JSON.parse(res));
     });
@@ -50,24 +52,35 @@ const EditProfile = props => {
     businessEmail: email,
     avatar: photo,
   };
+  const formData = new FormData();
+  formData.append('avatar', {
+    uri: photo,
+    type: 'image/jpg',
+    name: 'abc.jpg',
+  });
+  formData.append('businessName', businessName);
+  formData.append('businessEmail', email);
+  formData.append('businessPhoneNumber', phone);
+  formData.append('businessAddress', address);
 
   const onEdit = async () => {
     setLoading(true);
 
     try {
       const response = await commonFunction({
-        data: editCredentials,
+        data: formData,
         endpoint: '/businesses/update-business',
         method: 'PATCH',
       });
       // _storeData(response);
-      console.log('resUSer====<><', response.data);
+      console.log('resUSer====<>< before', response.data);
       // console.log('email', response.data.businessEmail);
-      if (response.data) {
-        console.log('resUSer====<><', response.data);
-        await AsyncStorage.setItem('user', JSON.stringify(response.data));
-        responseData(JSON.parse(response.data));
+      if (response?.data?.data) {
+        await AsyncStorage.setItem('user', JSON.stringify(response.data.data));
+        responseData(response.data.data);
         props.navigation.navigate('Setting');
+        // console.log('resUSer====<>< after', response.data.data);
+        _retrieveData();
         setLoading(false);
       }
     } catch (error) {
@@ -83,7 +96,7 @@ const EditProfile = props => {
     };
     const result = await launchImageLibrary(options);
     console.log('result', result.assets);
-    setPhoto(result.assets[0]);
+    setPhoto(result?.assets[0]?.uri);
   };
   // useEffect(() => {
   //   AsyncStorage.getItem('user').then(res => {
@@ -123,11 +136,16 @@ const EditProfile = props => {
             </View>
             <View style={styles.prVw}>
               {photo ? (
-                <Image style={styles.profileVw} source={{uri: photo?.uri}} />
-              ) : (
+                <Image style={styles.profileVw} source={{uri: photo}} />
+              ) : previousPhoto ? (
                 <View style={styles.profileVw}>
-                  <Image source={ImagePath.ELLIPSE} />
+                  <Image
+                    source={{uri: previousPhoto}}
+                    style={{height: 120, width: 120, borderRadius: 100 / 2}}
+                  />
                 </View>
+              ) : (
+                <Image style={styles.profileVw} source={ImagePath.DUMMY} />
               )}
               <TouchableOpacity
                 style={styles.camera}

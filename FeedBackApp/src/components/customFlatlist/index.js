@@ -16,46 +16,10 @@ import {ROBOTO_BOLD, ROBOTO_MEDIUM, ROBOTO_REGULAR} from '../../assets/fonts';
 import {ImagePath} from '../../assets/images';
 import {height, width} from '../../utils/dimensions/dimensions';
 import {COLOR} from '../../utils/color/color';
-
+import moment from 'moment';
 const CustomFlatList = props => {
   const [refreshing, setRefreshing] = useState(false);
-  const data = [
-    {
-      key: 1,
-      name: 'Arun Kumar',
-      emoji: 0,
-    },
-    {
-      key: 2,
-      name: 'Arun Kumar',
-      emoji: 2,
-    },
-    {
-      name: 'Arun Kumar',
-      key: 3,
-      emoji: 1,
-    },
-    {
-      name: 'Arun Kumar',
-      key: 4,
-      emoji: 0,
-    },
-    {
-      name: 'Arun Kumar',
-      key: 5,
-      emoji: 2,
-    },
-    {
-      name: 'Arun Kumar',
-      key: 7,
-      emoji: 0,
-    },
-    {
-      name: 'Arun Kumar',
-      key: 6,
-      emoji: 1,
-    },
-  ];
+
   console.log('mjsdhjsgdhsjhadsa', props);
   return (
     <View style={styles.flatListContainer}>
@@ -122,7 +86,7 @@ const CustomFlatList = props => {
                   )}
                   <Text
                     style={{color: '#797979', fontSize: 13, lineHeight: 20}}>
-                    1 day ago
+                    {moment(new Date(parseInt(item.item.createdAt))).fromNow()}
                   </Text>
                 </View>
                 <View

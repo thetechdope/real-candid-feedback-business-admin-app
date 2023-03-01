@@ -48,10 +48,12 @@ const Login = props => {
         }
       } catch (error) {
         setLoading(false);
-        console.log('error',error);
+        Alert.alert(error.response.data.message);
+        // console.log('username or password wrong', error);
         // setLoading(false);
       }
     }, 3000);
+    // setLoading(false);
   };
   return (
     <SafeAreaView style={styles.SafeAreaView}>
@@ -67,7 +69,7 @@ const Login = props => {
             </View>
             <Text style={styles.heading}>LOGIN</Text>
             <CustomTextInput
-            value={email}
+              value={email}
               secureTextEntry={false}
               onChangeText={txt => {
                 setEmail(txt);

@@ -17,6 +17,7 @@ import {SelectCountry} from 'react-native-element-dropdown';
 import {ImagePath} from '../../assets/images';
 import commonFunction from '../../components/CommonFunction';
 import {Route} from '../../navigation/route';
+
 const Feedbacks = props => {
   const data = [
     {label: 'Registered', value: '1', image: ImagePath.REGISTERED},
@@ -30,7 +31,7 @@ const Feedbacks = props => {
   const [FeedbacksByUsers, setFeedbacksByUsers] = useState([]);
   const [FilterFeedbacksByUsers, setFilterFeedbacksByUsers] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-  console.log(value);
+  // console.log(value);
   useEffect(() => {
     Feedbacks();
   }, []);
@@ -43,7 +44,7 @@ const Feedbacks = props => {
   };
   async function Feedbacks(params) {
     try {
-      const response = await commonFunction({
+      await commonFunction({
         data: '',
         endpoint: '/feedbacks/loggedin-business',
         method: 'GET',
@@ -51,18 +52,20 @@ const Feedbacks = props => {
         let data = [];
         data.push(res.data);
         setFeedbacksByUsers(res.data);
-        {
-          FeedbacksByUsers?.map(item => {
+        if (value === 2) {
+          const result = FeedbacksByUsers.filter(item => {
             {
-              item.isAnonymous === true && value === 2
-                ? setFilterFeedbacksByUsers(item)
-                : setFilterFeedbacksByUsers(item);
+              if (item?.isAnonymous) {
+                // console.log('is anomymous', item);
+                return true;
+              } else {
+                // console.log('is notanomymous', item);
+                return false;
+              }
             }
-            // setAnonymous(item);
-            // console.log('item user type', item.isAnonymous);
           });
+          console.log('filter', result);
         }
-        console.log('response from feedback', FeedbacksByUsers);
       });
     } catch (error) {
       console.log(error.response.data);
@@ -116,7 +119,7 @@ const Feedbacks = props => {
           height: height * 0.05,
           width: width * 0.9,
         }}>
-        <View style={styles.container}>
+        {/* <View style={styles.container}>
           <SelectCountry
             style={[styles.dropdown, isFocus && {borderColor: 'blue'}]}
             placeholderStyle={styles.placeholderStyle}
@@ -168,11 +171,11 @@ const Feedbacks = props => {
               />
             )}
           />
-        </View>
+        </View> */}
       </View>
       <View style={{height: height * 0.9}}>
         <CustomFlatList
-          data={FilterFeedbacksByUsers}
+          data={FeedbacksByUsers}
           onPress={item => {
             props.navigation.navigate(Route.profileFromFlatList, {item});
           }}

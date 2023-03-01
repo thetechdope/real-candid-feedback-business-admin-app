@@ -26,4 +26,5 @@ export const ImagePath = {
   LOGOUT: require('./Logout/Logout.png'),
   BLACKBELL: require('./BlackBell/Blackbell.png'),
   GREENBIG: require('./GreenBig/GreenBig.png'),
+  DUMMY: require('./dummy/avatar.jpeg'),
 };

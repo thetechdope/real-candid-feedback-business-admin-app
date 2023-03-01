@@ -66,17 +66,17 @@ const Setting = props => {
         console.log(eror);
       });
   };
-  useEffect(() => {
-    getUser();
-  }, []);
 
   async function getUser(params) {
     const AsyncUser = await AsyncStorage.getItem('user');
     // setUser();
     let parsedUser = JSON.parse(AsyncUser);
     setUser(parsedUser);
-    console.log('user from setting screen ', user);
+    // console.log('user from setting screen ', user);
   }
+  useEffect(() => {
+    getUser();
+  }, [user]);
   return (
     <CustomHeader>
       <View style={styles.mainView}>
@@ -108,7 +108,7 @@ const Setting = props => {
           }}>
           <Image
             style={{width: 70, height: 70, marginRight: 15}}
-            source={ImagePath.ELLIPSE}
+            source={{uri: user?.businessImage}}
           />
           <View style={{width: '60%'}}>
             <Text style={{fontSize: 18, color: COLOR.TEXTBLACK}}>

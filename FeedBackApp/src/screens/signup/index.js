@@ -1,4 +1,11 @@
-import {View, SafeAreaView, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 // import React from 'react';
 import React, {useState} from 'react';
 // import { useState } from 'react';
@@ -29,28 +36,39 @@ const Signup = props => {
     password: password,
     businessWebsiteUrl: url,
   };
-
+  const formData = new FormData();
+  formData.append('avatar', {
+    uri: photo,
+    type: 'image/jpg',
+    name: 'abc.jpg',
+  });
+  formData.append('businessName', name);
+  formData.append('businessEmail', email);
+  formData.append('businessPhoneNumber', phone);
+  formData.append('businessAddress', address);
+  formData.append('password', password);
+  formData.append('businessWebsiteUrl', url);
   const onSignup = async () => {
-    // setLoading(true);
+    setLoading(true);
 
-    // try {
-    const response = await commonFunction({
-      data: SignupCredentials,
-      endpoint: '/businesses/signup',
-      method: 'POST',
-    });
-    // console.log('response :>> ', JSON.stringify(response.data));
-    if (response.data) {
-      props.navigation.navigate('Otp', {
-        businessEmail: email,
-        screen: 'signup',
+    try {
+      const response = await commonFunction({
+        data: formData,
+        endpoint: '/businesses/signup',
+        method: 'POST',
       });
-      // setLoading(false);
+      // console.log('response :>> ', JSON.stringify(response.data));
+      if (response.data) {
+        props.navigation.navigate('Otp', {
+          businessEmail: email,
+          screen: 'signup',
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      setLoading(false);
+      Alert.alert('error :>> ', error.response.data.message);
     }
-    // } catch (error) {
-    //   setLoading(false);
-    //   console.log('error :>> ', error);
-    // }
   };
 
   const openCamera = async () => {
@@ -75,7 +93,10 @@ const Signup = props => {
                 <Image style={styles.profileVw} source={{uri: photo}} />
               ) : (
                 <View style={styles.profileVw}>
-                  <Image source={ImagePath.ELLIPSE} />
+                  <Image
+                    source={ImagePath.DUMMY}
+                    style={{height: 120, width: 120, borderRadius: 100 / 2}}
+                  />
                 </View>
               )}
               <TouchableOpacity
