@@ -142,15 +142,18 @@ const ChangePassword = props => {
           <CustomTextInput
             keyboardType={'default'}
             label={'Old Password'}
+            secureTextEntry={true}
             onChangeText={txt => setCurrentPassword(txt)}
           />
           <CustomTextInput
             keyboardType={'default'}
+            secureTextEntry={true}
             label={'New Password'}
             onChangeText={txt => setNewPassword(txt)}
           />
           <CustomTextInput
             keyboardType={'default'}
+            secureTextEntry={true}
             label={'Confirm Password'}
             onChangeText={txt => setConfirmPassword(txt)}
           />

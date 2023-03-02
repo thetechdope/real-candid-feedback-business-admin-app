@@ -1,10 +1,9 @@
-import { StyleSheet } from "react-native";
-import { height, width } from '../../utils/dimensions/dimensions';
-import { COLOR } from '../../utils/color/color';
-import { ROBOTO_MEDIUM } from "../../assets/fonts";
+import {StyleSheet} from 'react-native';
+import {height, width} from '../../utils/dimensions/dimensions';
+import {COLOR} from '../../utils/color/color';
+import {ROBOTO_MEDIUM} from '../../assets/fonts';
 
 export default StyleSheet.create({
-
   SafeAreaView: {
     backgroundColor: COLOR.SAFEAREAVIEW,
   },
@@ -24,15 +23,15 @@ export default StyleSheet.create({
     borderTopRightRadius: 40,
     // backgroundColor:'red'
   },
-    // heading: {
-    //   fontSize: 24,
-    //   fontFamily: 'Roboto-Medium',
-    //   lineHeight: 29,
-    //   textAlign: 'center',
-    //   height: height * 0.1,
-    //   marginTop:40,
-    //   // justifyContent:'center'
-    // },
+  // heading: {
+  //   fontSize: 24,
+  //   fontFamily: 'Roboto-Medium',
+  //   lineHeight: 29,
+  //   textAlign: 'center',
+  //   height: height * 0.1,
+  //   marginTop:40,
+  //   // justifyContent:'center'
+  // },
   // imageView: {
   //   width: width * 1,
   //   alignItems: 'center',
@@ -42,7 +41,7 @@ export default StyleSheet.create({
     height: 120,
     width: 120,
     alignSelf: 'center',
-    borderRadius: 60,
+    borderRadius: 100 / 2,
     // marginTop:45,
   },
   camera: {
@@ -51,14 +50,14 @@ export default StyleSheet.create({
     borderRadius: 12.5,
     alignSelf: 'center',
     marginTop: -35,
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
   },
   prVw: {
     height: 120,
     width: 120,
     alignSelf: 'center',
     borderRadius: 60,
-    marginTop:45,
+    marginTop: 45,
     // backgroundColor:'red'
   },
   forgotView: {
@@ -71,6 +70,4 @@ export default StyleSheet.create({
     lineHeight: 29,
     color: COLOR.TEXTBLACK,
   },
-
-
-})
+});
