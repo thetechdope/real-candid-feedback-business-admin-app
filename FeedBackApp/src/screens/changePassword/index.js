@@ -41,21 +41,35 @@ const ChangePassword = props => {
       confirmPassword: confirmPassword,
     };
     console.log('token===><', token);
+
     let config = {headers: {Authorization: `Bearer ${token}`}};
 
-    let response = axios
-      .patch(
-        'http://34.212.54.70:3000/api/businesses/change-password',
-        data,
-        config,
-      )
-      .then(resp => {
-        alert('password changed successfully'), setLoading(false);
-      })
-      .catch(err => {
-        console.log('errr=>>', err), setLoading(false);
-      });
-    return response;
+    if (
+      newpassword === confirmPassword &&
+      newpassword !== '' &&
+      confirmPassword !== ''
+    ) {
+      let response = axios
+        .patch(
+          'http://34.212.54.70:3000/api/businesses/change-password',
+          data,
+          config,
+        )
+        .then(resp => {
+          alert('password changed successfully'), setLoading(false);
+        })
+        .catch(err => {
+          alert(err.response.data.message), setLoading(false);
+        });
+      return response;
+      // console.log('password match');
+    } else if (newpassword === '' && confirmPassword === '') {
+      alert('please enter new password');
+      setLoading(false);
+    } else if (newpassword !== confirmPassword) {
+      alert('password mismatch');
+      setLoading(false);
+    }
   };
 
   // let PasswordCredential = {

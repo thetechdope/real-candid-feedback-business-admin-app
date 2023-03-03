@@ -53,14 +53,12 @@ const Feedbacks = props => {
         data.push(res.data);
         setFeedbacksByUsers(res.data);
         if (value === 2) {
-          const result = FeedbacksByUsers.filter(item => {
+          const result = FeedbacksByUsers.map(item => {
             {
               if (item?.isAnonymous) {
-                // console.log('is anomymous', item);
-                return true;
+                return item;
               } else {
-                // console.log('is notanomymous', item);
-                return false;
+                return item;
               }
             }
           });
@@ -175,7 +173,8 @@ const Feedbacks = props => {
       </View>
       <View style={{height: height * 0.9}}>
         <CustomFlatList
-          data={FeedbacksByUsers}
+          data={FeedbacksByUsers.reverse()}
+          fetchFunction={() => Feedbacks()}
           onPress={item => {
             props.navigation.navigate(Route.profileFromFlatList, {item});
           }}

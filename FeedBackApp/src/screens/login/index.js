@@ -52,14 +52,25 @@ const Login = props => {
             method: 'POST',
           });
           console.log('response :>> ', response.data);
-          if (response.data.isActive == true) {
+          if (
+            response.data.isActive == true &&
+            response.data.isEmailVerfified == true
+          ) {
             await AsyncStorage.setItem('token', response.data.token);
             await AsyncStorage.setItem('user', JSON.stringify(response.data));
             props.navigation.replace('BottomTab');
             setLoading(false);
-          } else {
+          } else if (response.data.isActive == false) {
             alert('this bussinees is blocked by admin');
             setLoading(false);
+          } else if (response.data.isEmailVerfified == false) {
+            alert('this bussinees is not verfied');
+            props.navigation.navigate('Otp', {
+              businessEmail: email,
+              screen: 'signup',
+            });
+            setLoading(false);
+          } else {
           }
         }
       } catch (error) {

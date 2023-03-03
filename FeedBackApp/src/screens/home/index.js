@@ -164,7 +164,8 @@ const Home = props => {
           <View>
             <ScrollView horizontal={true} key={'flat'}>
               <CustomFlatList
-                data={FeedbacksByUsers}
+                data={FeedbacksByUsers.reverse()}
+                fetchFunction={() => Feedbacks()}
                 onPress={item => {
                   props.navigation.navigate(Route.profileFromFlatList, {item});
                 }}

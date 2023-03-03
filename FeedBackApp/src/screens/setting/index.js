@@ -107,7 +107,12 @@ const Setting = props => {
             marginLeft: 10,
           }}>
           <Image
-            style={{width: 70, height: 70, marginRight: 15}}
+            style={{
+              width: 70,
+              height: 70,
+              marginRight: 15,
+              borderRadius: 100 / 2,
+            }}
             source={{uri: user?.businessImage}}
           />
           <View style={{width: '60%'}}>

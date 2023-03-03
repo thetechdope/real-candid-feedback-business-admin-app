@@ -19,7 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import commonFunction from '../../components/CommonFunction';
 
 const Signup = props => {
-  const [photo, setPhoto] = useState();
+  const [photo, setPhoto] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -37,11 +37,23 @@ const Signup = props => {
     businessWebsiteUrl: url,
   };
   const formData = new FormData();
-  formData.append('avatar', {
-    uri: photo,
-    type: 'image/jpg',
-    name: 'abc.jpg',
-  });
+  // {
+  //   photo === ''
+  //     ? formData.append('avatar', dummyImage)
+  //     : formData.append('avatar', {
+  //         uri: photo,
+  //         type: 'image/jpg',
+  //         name: 'abc.jpg',
+  //       });
+  // }
+  {
+    photo &&
+      formData.append('avatar', {
+        uri: photo,
+        type: 'image/jpg',
+        name: 'abc.jpg',
+      });
+  }
   formData.append('businessName', name);
   formData.append('businessEmail', email);
   formData.append('businessPhoneNumber', phone);
@@ -50,24 +62,34 @@ const Signup = props => {
   formData.append('businessWebsiteUrl', url);
   const onSignup = async () => {
     setLoading(true);
-
-    try {
-      const response = await commonFunction({
-        data: formData,
-        endpoint: '/businesses/signup',
-        method: 'POST',
-      });
-      // console.log('response :>> ', JSON.stringify(response.data));
-      if (response.data) {
-        props.navigation.navigate('Otp', {
-          businessEmail: email,
-          screen: 'signup',
-        });
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.+com)+$/;
+    if (reg.test(email) === false) {
+      setLoading(false);
+      alert('please enter correct email address');
+    } else {
+      if (name !== '' && email !== '' && password !== '' && address !== '') {
+        try {
+          const response = await commonFunction({
+            data: formData,
+            endpoint: '/businesses/signup',
+            method: 'POST',
+          });
+          // console.log('response :>> ', JSON.stringify(response.data));
+          if (response.data) {
+            props.navigation.navigate('Otp', {
+              businessEmail: email,
+              screen: 'signup',
+            });
+            setLoading(false);
+          }
+        } catch (error) {
+          setLoading(false);
+          Alert.alert('error :>> ', error.response.data.message);
+        }
+      } else {
+        Alert.alert('Error', 'Please Check All details');
         setLoading(false);
       }
-    } catch (error) {
-      setLoading(false);
-      Alert.alert('error :>> ', error.response.data.message);
     }
   };
 

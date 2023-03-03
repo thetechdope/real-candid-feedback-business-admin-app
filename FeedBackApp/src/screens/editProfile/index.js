@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import {View, SafeAreaView, Text, Image, TouchableOpacity} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import styles from './styles';
@@ -53,11 +54,16 @@ const EditProfile = props => {
     avatar: photo,
   };
   const formData = new FormData();
-  formData.append('avatar', {
-    uri: photo,
-    type: 'image/jpg',
-    name: 'abc.jpg',
-  });
+  {
+    previousPhoto
+      ? formData.append('avatar', previousPhoto)
+      : formData.append('avatar', {
+          uri: photo,
+          type: 'image/jpg',
+          name: 'abc.jpg',
+        });
+  }
+
   formData.append('businessName', businessName);
   formData.append('businessEmail', email);
   formData.append('businessPhoneNumber', phone);

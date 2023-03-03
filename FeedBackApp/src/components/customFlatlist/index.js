@@ -28,7 +28,7 @@ const CustomFlatList = props => {
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
-            onRefresh={<ActivityIndicator color={'black'} />}
+            onRefresh={props.fetchFunction}
           />
         }
         // style={{height: height * 0.3, width: '100%', backgroundColor: 'red'}}
@@ -75,7 +75,9 @@ const CustomFlatList = props => {
                       width: width * 0.56,
                       color: COLOR.TEXTBLACK,
                     }}>
-                    {item.item.customerName}
+                    {item.item.customerName
+                      ? item.item.customerName
+                      : 'Annonymous'}
                   </Text>
                   {item.item.rating === 0 ? (
                     <Image source={ImagePath.REDEMOJI} />

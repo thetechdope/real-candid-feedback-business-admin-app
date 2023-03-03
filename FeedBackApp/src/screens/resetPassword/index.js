@@ -29,6 +29,7 @@ const ResetPassword = props => {
     setEmail(props.route?.params?.businessEmail);
   }, []);
   const onReset = async () => {
+
     let body = {
       businessEmail: email,
       newPassword: newPassword,
@@ -72,11 +73,13 @@ const ResetPassword = props => {
           <CustomTextInput
             keyboardType={'default'}
             label={'New Password'}
+            secureTextEntry={true}
             onChangeText={txt => setNewPassword(txt)}
           />
           <CustomTextInput
             keyboardType={'default'}
             label={'Confirm Password'}
+            secureTextEntry={true}
             onChangeText={txt => setConfirmPassword(txt)}
           />
           <CustomButtonComponent
